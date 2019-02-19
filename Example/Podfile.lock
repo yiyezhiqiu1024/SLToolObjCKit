@@ -1,0 +1,16 @@
+PODS:
+  - SLToolObjCKit (0.1.0)
+
+DEPENDENCIES:
+  - SLToolObjCKit (from `../`)
+
+EXTERNAL SOURCES:
+  SLToolObjCKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  SLToolObjCKit: 7636fbd6bc47638307de3e999b1c30f913173bff
+
+PODFILE CHECKSUM: d36088fe82ade4eadb79ff89a5097731c4b2bb8f
+
+COCOAPODS: 1.5.3
