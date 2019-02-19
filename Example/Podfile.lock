@@ -1,16 +1,59 @@
 PODS:
-  - SLToolObjCKit (0.1.0)
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - SLCategoryKit/String (0.7.1)
+  - SLToolObjCKit (0.1.0):
+    - SLToolObjCKit/Alert (= 0.1.0)
+    - SLToolObjCKit/File (= 0.1.0)
+    - SLToolObjCKit/Network (= 0.1.0)
+    - SLToolObjCKit/ProgressHUD (= 0.1.0)
+    - SLToolObjCKit/UpdateApp (= 0.1.0)
+    - SLToolObjCKit/UserDefaults (= 0.1.0)
+  - SLToolObjCKit/Alert (0.1.0)
+  - SLToolObjCKit/File (0.1.0)
+  - SLToolObjCKit/Network (0.1.0):
+    - AFNetworking
+    - SLCategoryKit/String
+    - SVProgressHUD
+  - SLToolObjCKit/ProgressHUD (0.1.0):
+    - SVProgressHUD
+  - SLToolObjCKit/UpdateApp (0.1.0)
+  - SLToolObjCKit/UserDefaults (0.1.0)
+  - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
   - SLToolObjCKit (from `../`)
+
+SPEC REPOS:
+  https://gitee.com/AnthonyCoder/SLBaiSiSpecs.git:
+    - SLCategoryKit
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - SVProgressHUD
 
 EXTERNAL SOURCES:
   SLToolObjCKit:
     :path: "../"
 
 SPEC CHECKSUMS:
-  SLToolObjCKit: 7636fbd6bc47638307de3e999b1c30f913173bff
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  SLCategoryKit: e290f33abed41da9e2cb77b782eba9124ddada7d
+  SLToolObjCKit: 67207deaae91ee75d4e6930ffdce8a54b4c564fa
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: d36088fe82ade4eadb79ff89a5097731c4b2bb8f
+PODFILE CHECKSUM: b114374b1f1ce175b245840c1beb5d1e03775ab0
 
 COCOAPODS: 1.5.3

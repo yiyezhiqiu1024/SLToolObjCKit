@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'SLToolObjCKit'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of SLToolObjCKit.'
+  s.summary          = '封装的工具类库'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+  封装了弹窗、文件管理、对AFNetworking封装、对SVProgressHUD封装、检查版本更新、归档存储等工具类
                        DESC
 
   s.homepage         = 'https://github.com/CoderSLZeng/SLToolObjCKit'
@@ -30,11 +30,48 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'SLToolObjCKit/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'SLToolObjCKit' => ['SLToolObjCKit/Assets/*.png']
-  # }
+  # s.source_files = 'SLToolObjCKit/Classes/**/*'
+    
+    # s.resource_bundles = {
+    #   'SLToolObjCKit' => ['SLToolObjCKit/Assets/*.png']
+    # }
+    
+    # subspec
+    s.subspec 'Alert' do |alert|
+        alert.source_files = 'SLToolObjCKit/Classes/Alert/*.{h,m}'
+    end
+    
+    s.subspec 'File' do |file|
+        file.source_files = 'SLToolObjCKit/Classes/File/*.{h,m}'
+    end
+    
+    s.subspec 'Network' do |network|
+        network.source_files = 'SLToolObjCKit/Classes/Network/*.{h,m}'
+        network.dependency 'AFNetworking'
+        network.dependency 'SVProgressHUD'
+        network.dependency 'SLCategoryKit/String'
+        
+        network.resource_bundles = {
+           'SLToolObjCKit' => ['SLToolObjCKit/Assets/Network/*.cer']
+         }
+    end
+    
+    s.subspec 'ProgressHUD' do |progressHUD|
+        progressHUD.source_files = 'SLToolObjCKit/Classes/ProgressHUD/*.{h,m}'
+        progressHUD.dependency 'SVProgressHUD'
+        
+        progressHUD.resource_bundles = {
+           'SLToolObjCKit' => ['SLToolObjCKit/Assets/ProgressHUD/*.png']
+         }
+    end
+    
+    s.subspec 'UpdateApp' do |updateApp|
+        updateApp.source_files = 'SLToolObjCKit/Classes/UpdateApp/*.{h,m}'
+    end
+    
+    s.subspec 'UserDefaults' do |userDefaults|
+        userDefaults.source_files = 'SLToolObjCKit/Classes/UserDefaults/*.{h,m}'
+    end
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
