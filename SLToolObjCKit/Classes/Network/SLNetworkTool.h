@@ -19,13 +19,16 @@ typedef NS_ENUM(NSInteger, SLRequestType) {
     SLRequestTypePOST = 1
 };
 
-BOOL isDebugType = NO;
-BOOL isHttpsType = NO;
-
 @interface SLNetworkTool : AFHTTPSessionManager
 
 + (__kindof SLNetworkTool*)sl_sharedNetworkTool;
-+ (AFSecurityPolicy *)sl_customSecurityPolicy;
+
+/**
+ 使用证书相关处理
+ @param cerName 导入证书名称
+ @param isByPassSLL 设置是否绕过SLL
+ */
++ (void)sl_customSecurityPolicyWithCerName:(NSString *)cerName isByPassSLL:(BOOL)isByPassSLL;
 /**
  请求方式
  

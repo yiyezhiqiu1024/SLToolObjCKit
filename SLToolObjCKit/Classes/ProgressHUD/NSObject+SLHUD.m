@@ -1,9 +1,9 @@
 //
 //  NSObject+SLHUD.m
-//  PartyConstruction
+//  SLToolObjCKit
 //
 //  Created by CoderSLZeng on 2018/1/19.
-//  Copyright © 2018年 linson. All rights reserved.
+//  
 //
 
 #import "NSObject+SLHUD.h"
@@ -16,14 +16,12 @@
 
 - (void)sl_showInfoText:(NSString *)aText
 {
-//    [SLProgressHUD showImage:nil status:aText];
     [SLProgressHUD showInfoWithStatus:aText];
 }
 
-
 - (void)sl_showErrorText:(NSString *)aText
 {
-    [SLProgressHUD showErrorWithStatus:aText];
+    [SLProgressHUD showErrorWithStatus:aText];    
 }
 
 - (void)sl_showSuccessText:(NSString *)aText
@@ -35,7 +33,6 @@
 {
     [SLProgressHUD show];
 }
-
 
 - (void)sl_dismissLoading
 {

@@ -1,9 +1,9 @@
 //
 //  SLProgressHUD.m
-//  PartyConstruction
+//  SLToolObjCKit
 //
 //  Created by CoderSLZeng on 2018/1/19.
-//  Copyright © 2018年 linson. All rights reserved.
+// 
 //
 
 #import "SLProgressHUD.h"
@@ -12,27 +12,12 @@
 
 #define WEAKSELF(weakSelf)  __weak __typeof(&*self)weakSelf = self;
 
-
 @interface SLProgressHUD ()
 @property (nonatomic, strong) CMMotionManager *motionManager;
 @property (nonatomic, assign) UIInterfaceOrientation lastOrientation;
 @end
 
 @implementation SLProgressHUD
-
-// Customization
-+ (void)initialize
-{
-    [self setSuccessImage:[UIImage imageNamed:@"HUD_success"]];
-    [self setInfoImage:[UIImage imageNamed:@"HUD_info"]];
-    [self setErrorImage:[UIImage imageNamed:@"HUD_error"]];
-    
-    [self setDefaultMaskType:SVProgressHUDMaskTypeClear];
-    [self setDefaultStyle:SVProgressHUDStyleDark];
-    [self setCornerRadius:8.0];
-}
-
-
 
 // 根据 提示文字字数，判断 HUD 显示时间
 - (NSTimeInterval)displayDurationForString:(NSString*)string
@@ -41,11 +26,13 @@
 }
 
 // 修改 HUD 颜色，需要取消混合效果(使`backgroundColroForStyle`方法有效)
-- (void)updateBlurBounds{
+- (void)updateBlurBounds
+{
 }
 
 // HUD 颜色
-- (UIColor*)backgroundColorForStyle{
+- (UIColor*)backgroundColorForStyle
+{
     return [UIColor colorWithWhite:0 alpha:0.9];
 }
 
@@ -153,7 +140,6 @@
     if (_motionManager == nil) {
         _motionManager = [[CMMotionManager alloc] init];
         _motionManager.accelerometerUpdateInterval = 1./15.;
-        
     }
     return _motionManager;
 }

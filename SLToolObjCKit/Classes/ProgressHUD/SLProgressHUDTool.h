@@ -1,9 +1,9 @@
 //
 //  SLProgressHUDTool.h
-//  PartyConstruction
+//  SLToolObjCKit
 //
 //  Created by CoderSLZeng on 2018/1/5.
-//  Copyright © 2018年 linson. All rights reserved.
+//
 //  对SVProgressHUD框架封装的工具类
 //
 

@@ -24,6 +24,8 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		9014378E3FB882A79A878B17 /* Pods_SLToolObjCKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1631EFDFF69EDB8486DD3A4 /* Pods_SLToolObjCKit_Tests.framework */; };
+		AEB9C4AA221E79B200EFFA76 /* debug.cer in Resources */ = {isa = PBXBuildFile; fileRef = AEB9C4A8221E79B200EFFA76 /* debug.cer */; };
+		AEB9C4AB221E79B200EFFA76 /* release.cer in Resources */ = {isa = PBXBuildFile; fileRef = AEB9C4A9221E79B200EFFA76 /* release.cer */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,8 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		939445178532249D00C278BA /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		A1631EFDFF69EDB8486DD3A4 /* Pods_SLToolObjCKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLToolObjCKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AEB9C4A8221E79B200EFFA76 /* debug.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = debug.cer; sourceTree = "<group>"; };
+		AEB9C4A9221E79B200EFFA76 /* release.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = release.cer; sourceTree = "<group>"; };
 		AF8552D07E3060BA693E2BE2 /* Pods-SLToolObjCKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLToolObjCKit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SLToolObjCKit_Tests/Pods-SLToolObjCKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,6 +136,7 @@
 		6003F593195388D20070C39A /* Example for SLToolObjCKit */ = {
 			isa = PBXGroup;
 			children = (
+				AEB9C4A7221E79B200EFFA76 /* Resource */,
 				6003F59C195388D20070C39A /* SLAppDelegate.h */,
 				6003F59D195388D20070C39A /* SLAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -194,6 +199,15 @@
 				AF8552D07E3060BA693E2BE2 /* Pods-SLToolObjCKit_Tests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		AEB9C4A7221E79B200EFFA76 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				AEB9C4A8221E79B200EFFA76 /* debug.cer */,
+				AEB9C4A9221E79B200EFFA76 /* release.cer */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,6 +297,8 @@
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
+				AEB9C4AB221E79B200EFFA76 /* release.cer in Resources */,
+				AEB9C4AA221E79B200EFFA76 /* debug.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,9 +343,9 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SLToolObjCKit_Example/Pods-SLToolObjCKit_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SLToolObjCKit_Example/Pods-SLToolObjCKit_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
-				"${BUILT_PRODUCTS_DIR}/SLCategoryKit/SLCategoryKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SLCategoryObjCKit/SLCategoryObjCKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SLToolObjCKit/SLToolObjCKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 			);
@@ -338,13 +354,13 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SLCategoryKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SLCategoryObjCKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SLToolObjCKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SLToolObjCKit_Example/Pods-SLToolObjCKit_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SLToolObjCKit_Example/Pods-SLToolObjCKit_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EDF4AA243E62745578730D94 /* [CP] Check Pods Manifest.lock */ = {

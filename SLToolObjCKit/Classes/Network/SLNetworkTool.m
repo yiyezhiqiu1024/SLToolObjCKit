@@ -32,39 +32,41 @@ static SLNetworkTool *instance_;
                                                                @"image/png",
                                                                @"application/octet-stream",
                                                                nil];
-        
-        if (isHttpsType) {
-            [instance_ setSecurityPolicy:[self sl_customSecurityPolicy]];            
-        }
     });
     return instance_;
 }
 
-+ (AFSecurityPolicy *)sl_customSecurityPolicy {
++ (void)sl_customSecurityPolicyWithCerName:(NSString *)cerName isByPassSLL:(BOOL)isByPassSLL {
     
-    NSString *cerName = isDebugType ? @"debug" : @"release";
-
     // 先导入证书 证书由服务端生成，具体由服务端人员操作
-    NSBundle *currentBundle = [NSBundle bundleForClass:[self class]];
-    NSString *bundleName    = [currentBundle.infoDictionary[@"CFBundleName"] stringByAppendingString:@".bundle"];
-    NSString *cerPath       = [currentBundle pathForResource:cerName ofType:@"cer" inDirectory:bundleName];
+    NSString *cerPath = [[NSBundle mainBundle] pathForResource:cerName ofType:@"cer"];
     
     if (cerPath == nil) {
-        NSLog(@"证书不存在");
-        return nil;
+        NSException *excp = [NSException exceptionWithName:@"pathError"
+                                                    reason:@"证书不存在，调用此方法必须先检查是否导入.cer证书资源"
+                                                  userInfo:nil];
+        [excp raise];
+        return;
     }
     
     NSData *cerData = [NSData dataWithContentsOfFile:cerPath];
     
     if (cerData == nil) {
-        NSLog(@"证书数据解析出错");
-        return nil;
+        NSException *excp = [NSException exceptionWithName:@"pathError"
+                                                    reason:@"证书数据解析出错，调用此方法必须先检查.cer证书是否有效"
+                                                  userInfo:nil];
+        [excp raise];
+        return;
     }
     
-    // AFSSLPinningModeCertificate 使用证书验证模式
-    //    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
-    // 绕过SSL认证
-    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+    AFSecurityPolicy *securityPolicy;
+    
+    if (isByPassSLL) { // 绕过SSL认证
+        securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+    } else { // 使用证书验证模式
+        securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
+    }
+    
     /*
      allowInvalidCertificates 是否允许无效证书（也就是自建的证书），默认为NO
      如果是需要验证自建证书，需要设置为YES
@@ -80,7 +82,11 @@ static SLNetworkTool *instance_;
     securityPolicy.validatesDomainName = NO;
     
     securityPolicy.pinnedCertificates = [[NSSet alloc] initWithObjects:cerData, nil];
-    return securityPolicy;
+    
+    if (instance_ == nil) {
+        [self sl_sharedNetworkTool];
+    }
+    [instance_ setSecurityPolicy:securityPolicy];
 }
 
 - (void)sl_requestMethodType:(SLRequestType)methodType
@@ -89,15 +95,10 @@ static SLNetworkTool *instance_;
                     finished:(void (^)(NSDictionary *result, NSError *error))finished
 {
     // 1.检查网络
-    //    if (![self checkNetWorking]) {
-    //        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-    //        [SVProgressHUD showInfoWithStatus:@"网络异常，请检查网络设置！"];
-    //        return ;
-    //    }
+    if (![self checkNetWorking]) return;
     
     // 2.定义成功的回调
     void (^successCallBack)(NSURLSessionDataTask *task, id result) = ^(NSURLSessionDataTask *task, id result) {
-        
         finished(result, nil);
     };
     
@@ -136,15 +137,10 @@ static SLNetworkTool *instance_;
                     finished:(void (^)(NSDictionary *result, NSError *error))finished
 {
     // 1.检查网络
-    //    if (![self checkNetWorking]) {
-    //        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-    //        [SVProgressHUD showInfoWithStatus:@"网络异常，请检查网络设置！"];
-    //        return ;
-    //    }
+    if (![self checkNetWorking]) return;
     
     // 2.定义成功的回调
     void (^successCallBack)(NSURLSessionDataTask *task, id result) = ^(NSURLSessionDataTask *task, id result) {
-        
         finished(result, nil);
     };
     
@@ -162,7 +158,6 @@ static SLNetworkTool *instance_;
     
     // 4.发送网络请求
     if (methodType == SLRequestTypeGET) {
-        
         [self GET:urlString
        parameters:baseParameters
          progress:progress
@@ -182,11 +177,7 @@ static SLNetworkTool *instance_;
                           finished:(void (^)(id<AFMultipartFormData> formData, NSDictionary *result, NSError *error))finished
 {
     // 1.检查网络
-    //    if (![self checkNetWorking]) {
-    //        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-    //        [SVProgressHUD showInfoWithStatus:@"网络异常，请检查网络设置！"];
-    //        return ;
-    //    }
+    if (![self checkNetWorking]) return;
     
     // 2.定义上传文件参数的回调
     void (^constructingBodyCallBack)(id<AFMultipartFormData>  _Nonnull formData) = ^(id<AFMultipartFormData>  _Nonnull formData) {
@@ -265,9 +256,9 @@ constructingBodyWithBlock:constructingBodyCallBack
             
             NSString *str = [formatter stringFromDate:[NSDate date]];
             NSString *fileName = [NSString stringWithFormat:@"%@.png", str];
-            //        SLLog(@"---fileName-%@",fileName);
+            // NSLog(@"---fileName-%@",fileName);
             
-            //               [formData appendPartWithFileData:imageData name:name fileName:fileName mimeType:@"image/png"];
+            // [formData appendPartWithFileData:imageData name:name fileName:fileName mimeType:@"image/png"];
             [formData appendPartWithFileData:imageData name:@"0" fileName:fileName mimeType:@"application/octet-stream"];
         } else {
             NSLog(@"%@", imageData);
@@ -289,13 +280,6 @@ constructingBodyWithBlock:constructingBodyCallBack
     }
     
     [self sl_upLoadFileWithUrlString:urlString parameters:parameters finished:^(id<AFMultipartFormData> formData, NSDictionary *result, NSError *error) {
-        
-        if (error != nil)
-        {
-            NSLog(@"上传图片失败 - %@", error);
-            [SVProgressHUD showErrorWithStatus:@"上传图片失败"];
-            return;
-        }
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"yyyyMMddHHmmss";
@@ -320,7 +304,7 @@ constructingBodyWithBlock:constructingBodyCallBack
                 NSString *fileName = [NSString stringWithFormat:@"IMG%@%lu.jpg", str, (unsigned long)idx];
                 NSLog(@"---fileName-%@",fileName);
                 
-                //               [formData appendPartWithFileData:imageData name:name fileName:fileName mimeType:@"image/png"];
+                // [formData appendPartWithFileData:imageData name:name fileName:fileName mimeType:@"image/png"];
                 [formData appendPartWithFileData:imageData name:name fileName:fileName mimeType:@"application/octet-stream"];
             } else {
                 NSLog(@"%@", imageData);
@@ -332,18 +316,20 @@ constructingBodyWithBlock:constructingBodyCallBack
     }];
 }
 
-#pragma mark - Private
+#pragma mark - Private methond
 /**
  检查网络
  
  @return 是否有网络
  */
 - (BOOL)checkNetWorking{
+    
     BOOL isReachable = YES;
     
-    //检测网络状态
-    AFNetworkReachabilityManager *rech =  [AFNetworkReachabilityManager sharedManager];
-    int status = rech.networkReachabilityStatus ;
+    // 检测网络状态
+    AFNetworkReachabilityManager *mgr = [AFNetworkReachabilityManager sharedManager];
+    
+    int status = mgr.networkReachabilityStatus;
     
     switch (status) {
         case AFNetworkReachabilityStatusUnknown: // 未知网络
@@ -352,10 +338,10 @@ constructingBodyWithBlock:constructingBodyCallBack
             
         case AFNetworkReachabilityStatusNotReachable: // 没有网络(断网)
         {
-            isReachable = NO ;
             NSLog(@"没有网络(断网)");
+            [SVProgressHUD showErrorWithStatus:@"网络异常，请检查网络设置！"];
+            isReachable = NO ;
         }
-            
             break;
             
         case AFNetworkReachabilityStatusReachableViaWWAN: // 手机自带网络
@@ -367,9 +353,7 @@ constructingBodyWithBlock:constructingBodyCallBack
             break;
     }
     
-    
-    return isReachable ;
-    
+    return isReachable;
 }
 
 @end

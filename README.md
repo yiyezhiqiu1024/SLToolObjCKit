@@ -27,3 +27,7 @@ CoderSLZeng, 359297567@qq.com
 ## License
 
 SLToolObjCKit is available under the MIT license. See the LICENSE file for more info.
+
+
+## Use SLNetwork
+使用 SSL 请求，需要添加自建证书到

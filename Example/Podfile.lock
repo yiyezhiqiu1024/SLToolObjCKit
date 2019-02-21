@@ -14,7 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
-  - SLCategoryKit/String (0.7.1)
+  - SLCategoryObjCKit/String (0.1.0)
   - SLToolObjCKit (0.1.0):
     - SLToolObjCKit/Alert (= 0.1.0)
     - SLToolObjCKit/File (= 0.1.0)
@@ -26,7 +26,7 @@ PODS:
   - SLToolObjCKit/File (0.1.0)
   - SLToolObjCKit/Network (0.1.0):
     - AFNetworking
-    - SLCategoryKit/String
+    - SLCategoryObjCKit/String
     - SVProgressHUD
   - SLToolObjCKit/ProgressHUD (0.1.0):
     - SVProgressHUD
@@ -38,10 +38,9 @@ DEPENDENCIES:
   - SLToolObjCKit (from `../`)
 
 SPEC REPOS:
-  https://gitee.com/AnthonyCoder/SLBaiSiSpecs.git:
-    - SLCategoryKit
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - SLCategoryObjCKit
     - SVProgressHUD
 
 EXTERNAL SOURCES:
@@ -50,10 +49,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  SLCategoryKit: e290f33abed41da9e2cb77b782eba9124ddada7d
-  SLToolObjCKit: 67207deaae91ee75d4e6930ffdce8a54b4c564fa
+  SLCategoryObjCKit: a35b1595f40162db1058e469fa71848554eca4bb
+  SLToolObjCKit: bbbae6f114a0d3746a2b6178ca50c96b79eae504
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: b114374b1f1ce175b245840c1beb5d1e03775ab0
+PODFILE CHECKSUM: d36088fe82ade4eadb79ff89a5097731c4b2bb8f
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0

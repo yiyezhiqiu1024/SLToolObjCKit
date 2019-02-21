@@ -49,20 +49,12 @@ Pod::Spec.new do |s|
         network.source_files = 'SLToolObjCKit/Classes/Network/*.{h,m}'
         network.dependency 'AFNetworking'
         network.dependency 'SVProgressHUD'
-        network.dependency 'SLCategoryKit/String'
-        
-        network.resource_bundles = {
-           'SLToolObjCKit' => ['SLToolObjCKit/Assets/Network/*.cer']
-         }
+        network.dependency 'SLCategoryObjCKit/String'
     end
     
     s.subspec 'ProgressHUD' do |progressHUD|
         progressHUD.source_files = 'SLToolObjCKit/Classes/ProgressHUD/*.{h,m}'
-        progressHUD.dependency 'SVProgressHUD'
-        
-        progressHUD.resource_bundles = {
-           'SLToolObjCKit' => ['SLToolObjCKit/Assets/ProgressHUD/*.png']
-         }
+        progressHUD.dependency 'SVProgressHUD'        
     end
     
     s.subspec 'UpdateApp' do |updateApp|
