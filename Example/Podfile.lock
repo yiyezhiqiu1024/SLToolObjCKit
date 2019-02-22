@@ -14,7 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
-  - SLCategoryObjCKit/String (0.1.0)
+  - SLCategoryObjCKit/String (0.2.0)
   - SLToolObjCKit (0.1.0):
     - SLToolObjCKit/Alert (= 0.1.0)
     - SLToolObjCKit/File (= 0.1.0)
@@ -49,7 +49,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  SLCategoryObjCKit: a35b1595f40162db1058e469fa71848554eca4bb
+  SLCategoryObjCKit: 46eed3de58cc886661eb99498fec377ccd932559
   SLToolObjCKit: bbbae6f114a0d3746a2b6178ca50c96b79eae504
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
