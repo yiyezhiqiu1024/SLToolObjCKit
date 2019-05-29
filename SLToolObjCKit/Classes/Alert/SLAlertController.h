@@ -1,9 +1,8 @@
 //
 //  SLAlertController.h
-//  SLAlertController
+//  SLToolObjCKit
 //
 //  Created by CoderSLZeng on 17/12/21.
-//  Copyright © 2017年 Amass. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

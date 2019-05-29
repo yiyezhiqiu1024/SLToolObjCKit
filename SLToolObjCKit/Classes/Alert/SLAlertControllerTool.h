@@ -1,9 +1,8 @@
 //
 //  SLAlertTool.h
-//  PartyConstruction
+//  SLToolObjCKit
 //
 //  Created by CoderSLZeng on 2018/1/26.
-//  Copyright © 2018年 linson. All rights reserved.
 //  弹框提示的控制器工具类
 //
 

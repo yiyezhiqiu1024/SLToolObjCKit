@@ -3,8 +3,8 @@
 //  PartyConstruction
 //
 //  Created by CoderSLZeng on 2017/11/3.
-//  Copyright © 2017年 amass. All rights reserved.
 //  封装更新App版本工具类
+//
 
 #import <Foundation/Foundation.h>
 

@@ -1,6 +1,6 @@
 //
 //  SLNetworkTool.h
-//  SLToolKit
+//  SLToolObjCKit
 //
 //  Created by CoderSLZeng on 2017/11/22.
 //  对AFN网络请求封装工具类

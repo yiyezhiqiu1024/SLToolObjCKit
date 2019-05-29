@@ -3,14 +3,13 @@
 //  PartyConstruction
 //
 //  Created by CoderSLZeng on 2017/11/3.
-//  Copyright © 2017年 amass. All rights reserved.
 //  封装更新App版本工具类
+//
 
 #import "SLUpdateAppTool.h"
 
 @implementation SLUpdateAppTool
-+ (void)sl_updateWithAPPID:(NSString *)appid block:(void(^)(NSString *currentVersion,NSString *storeVersion, NSString *openUrl,BOOL isUpdate))block
-{
++ (void)sl_updateWithAPPID:(NSString *)appid block:(void(^)(NSString *currentVersion,NSString *storeVersion, NSString *openUrl,BOOL isUpdate))block {
     // 1.从网络获取appStore版本号
     NSString *urlStr = [NSString stringWithFormat:@"http://itunes.apple.com/cn/lookup?id=%@",appid];
     NSURL *url = [NSURL URLWithString:urlStr];

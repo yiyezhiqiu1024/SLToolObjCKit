@@ -1,6 +1,6 @@
 //
 //  SLNetworkTool.m
-//  SLToolKit
+//  SLToolObjCKit
 //
 //  Created by CoderSLZeng on 2017/11/20.
 //  
@@ -14,8 +14,7 @@
 
 static SLNetworkTool *instance_;
 
-+ (__kindof SLNetworkTool*)sl_sharedNetworkTool
-{
++ (__kindof SLNetworkTool*)sl_sharedNetworkTool {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance_ = [[self alloc] initWithBaseURL:nil sessionConfiguration:NSURLSessionConfiguration.defaultSessionConfiguration];
@@ -92,8 +91,7 @@ static SLNetworkTool *instance_;
 - (void)sl_requestMethodType:(SLRequestType)methodType
                    urlString:(NSString *)urlString
                   parameters:(NSDictionary *)parameters
-                    finished:(void (^)(NSDictionary *result, NSError *error))finished
-{
+                    finished:(void (^)(NSDictionary *result, NSError *error))finished {
     // 1.检查网络
     if (![self checkNetWorking]) return;
     
@@ -134,8 +132,7 @@ static SLNetworkTool *instance_;
                    urlString:(NSString *)urlString
                   parameters:(NSDictionary *)parameters
                     progress:(void (^)(NSProgress * _Nonnull))progress
-                    finished:(void (^)(NSDictionary *result, NSError *error))finished
-{
+                    finished:(void (^)(NSDictionary *result, NSError *error))finished {
     // 1.检查网络
     if (![self checkNetWorking]) return;
     
@@ -174,8 +171,7 @@ static SLNetworkTool *instance_;
 
 - (void)sl_upLoadFileWithUrlString:(NSString *)urlString
                         parameters:(NSDictionary *)parameters
-                          finished:(void (^)(id<AFMultipartFormData> formData, NSDictionary *result, NSError *error))finished
-{
+                          finished:(void (^)(id<AFMultipartFormData> formData, NSDictionary *result, NSError *error))finished {
     // 1.检查网络
     if (![self checkNetWorking]) return;
     
@@ -213,8 +209,7 @@ constructingBodyWithBlock:constructingBodyCallBack
 - (void)sl_uploadImage:(UIImage *)image
              urlString:(NSString *)urlString
             parameters:(NSDictionary *)parameters
-              finished:(void (^)(NSDictionary *result))finished
-{
+              finished:(void (^)(NSDictionary *result))finished {
     
     if (image == nil) {
         NSException *excp = [NSException exceptionWithName:@"pathError" reason:@"调用此方法必须提供一个图片参数" userInfo:nil];
@@ -271,8 +266,7 @@ constructingBodyWithBlock:constructingBodyCallBack
 - (void)sl_uploadImages:(NSArray<UIImage *> *)imagesArray
               urlString:(NSString *)urlString
              parameters:(NSDictionary *)parameters
-               finished:(void (^)(NSDictionary *result))finished
-{
+               finished:(void (^)(NSDictionary *result))finished {
     if (imagesArray.count == 0) {
         NSException *excp = [NSException exceptionWithName:@"pathError" reason:@"调用此方法必须提供一个装载图片的数组参数" userInfo:nil];
         [excp raise];

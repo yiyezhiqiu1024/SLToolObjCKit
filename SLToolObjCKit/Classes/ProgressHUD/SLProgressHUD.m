@@ -20,31 +20,25 @@
 @implementation SLProgressHUD
 
 // 根据 提示文字字数，判断 HUD 显示时间
-- (NSTimeInterval)displayDurationForString:(NSString*)string
-{
+- (NSTimeInterval)displayDurationForString:(NSString*)string {
     return MIN((float)string.length*0.06 + 0.5, 2.0);
 }
 
 // 修改 HUD 颜色，需要取消混合效果(使`backgroundColroForStyle`方法有效)
-- (void)updateBlurBounds
-{
-}
+- (void)updateBlurBounds { }
 
 // HUD 颜色
-- (UIColor*)backgroundColorForStyle
-{
+- (UIColor*)backgroundColorForStyle {
     return [UIColor colorWithWhite:0 alpha:0.9];
 }
 
-- (void)willMoveToSuperview:(UIView *)newSuperview
-{
+- (void)willMoveToSuperview:(UIView *)newSuperview {
     if([self.motionManager isAccelerometerAvailable]){
        // [self orientationChange]; // 跟随屏幕旋转
     }
 }
 
-- (void)willRemoveSubview:(UIView *)subview
-{
+- (void)willRemoveSubview:(UIView *)subview {
     if (self.motionManager) {
         [self.motionManager stopAccelerometerUpdates];
         self.motionManager = nil;
@@ -52,8 +46,7 @@
 }
 
 #pragma mark - 屏幕方向旋转
-- (void)orientationChange
-{
+- (void)orientationChange {
     WEAKSELF(weakSelf);
     [self.motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMAccelerometerData * _Nullable accelerometerData, NSError * _Nullable error) {
         CMAcceleration acceleration = accelerometerData.acceleration;
@@ -87,15 +80,13 @@
     }];
 }
 
-- (void)configHUDOrientation:(UIInterfaceOrientation )orientation
-{
+- (void)configHUDOrientation:(UIInterfaceOrientation )orientation {
     CGFloat angle = [self calculateTransformAngle:orientation];
     self.transform = CGAffineTransformRotate(self.transform, angle);
 }
 
 
-- (CGFloat)calculateTransformAngle:(UIInterfaceOrientation )orientation
-{
+- (CGFloat)calculateTransformAngle:(UIInterfaceOrientation )orientation {
     CGFloat angle = 0.0;
     if (self.lastOrientation == UIInterfaceOrientationPortrait) {
         switch (orientation) {
@@ -135,8 +126,7 @@
 }
 
 #pragma mark - Lazy Load
-- (CMMotionManager *)motionManager
-{
+- (CMMotionManager *)motionManager {
     if (_motionManager == nil) {
         _motionManager = [[CMMotionManager alloc] init];
         _motionManager.accelerometerUpdateInterval = 1./15.;

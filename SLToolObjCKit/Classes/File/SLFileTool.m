@@ -1,6 +1,6 @@
 //
 //  SLFileTool.m
-//  SLToolKit
+//  SLToolObjCKit
 //
 //  Created by CoderSLZeng on 2017/11/22.
 //
@@ -9,8 +9,7 @@
 
 @implementation SLFileTool
 
-+ (void)sl_getFileSize:(NSString *)directoryPath completion:(void(^)(NSInteger))completion
-{
++ (void)sl_getFileSize:(NSString *)directoryPath completion:(void(^)(NSInteger))completion {
     // 获取文件管理者
     NSFileManager *mgr = [NSFileManager defaultManager];
     BOOL isDirectory;
@@ -65,8 +64,7 @@
     });
 }
 
-+ (void)sl_removeDirectoryPath:(NSString *)directoryPath
-{
++ (void)sl_removeDirectoryPath:(NSString *)directoryPath {
     // 获取文件管理者
     NSFileManager *mgr = [NSFileManager defaultManager];
     

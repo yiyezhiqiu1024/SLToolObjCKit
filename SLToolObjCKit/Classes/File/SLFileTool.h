@@ -1,6 +1,6 @@
 //
 //  SLFileTool.h
-//  SLToolKit
+//  SLToolObjCKit
 //
 //  Created by CoderSLZeng on 2017/11/22.
 //  文件管理工具类
