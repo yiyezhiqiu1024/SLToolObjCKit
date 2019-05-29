@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
     #   * Finally, don't worry about the indent, CocoaPods strips it!
     
     s.description      = <<-DESC
-    封装了弹窗、文件管理、对AFNetworking封装、对SVProgressHUD封装、检查版本更新、归档存储等工具类
+    封装了弹窗、文件管理、对AFNetworking封装、对SVProgressHUD封装、检查版本更新、归档存储、永久线程等工具类
     DESC
     
     s.homepage         = 'https://github.com/CoderSLZeng/SLToolObjCKit'
@@ -91,6 +91,10 @@ Pod::Spec.new do |s|
         
         s.subspec 'UserDefaults' do |userDefaults|
             userDefaults.source_files = 'SLToolObjCKit/Classes/UserDefaults/*.{h,m}'
+        end
+        
+        s.subspec 'Thread' do |thread|
+            thread.source_files = 'SLToolObjCKit/Classes/Thread/*.{h,m}'
         end
                 
     end

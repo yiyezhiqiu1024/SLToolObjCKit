@@ -15,23 +15,25 @@ PODS:
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
   - SLCategoryObjCKit/String (0.2.0)
-  - SLToolObjCKit (0.1.0):
-    - SLToolObjCKit/Alert (= 0.1.0)
-    - SLToolObjCKit/File (= 0.1.0)
-    - SLToolObjCKit/Network (= 0.1.0)
-    - SLToolObjCKit/ProgressHUD (= 0.1.0)
-    - SLToolObjCKit/UpdateApp (= 0.1.0)
-    - SLToolObjCKit/UserDefaults (= 0.1.0)
-  - SLToolObjCKit/Alert (0.1.0)
-  - SLToolObjCKit/File (0.1.0)
-  - SLToolObjCKit/Network (0.1.0):
+  - SLToolObjCKit (0.2.0):
+    - SLToolObjCKit/Alert (= 0.2.0)
+    - SLToolObjCKit/File (= 0.2.0)
+    - SLToolObjCKit/Network (= 0.2.0)
+    - SLToolObjCKit/ProgressHUD (= 0.2.0)
+    - SLToolObjCKit/Thread (= 0.2.0)
+    - SLToolObjCKit/UpdateApp (= 0.2.0)
+    - SLToolObjCKit/UserDefaults (= 0.2.0)
+  - SLToolObjCKit/Alert (0.2.0)
+  - SLToolObjCKit/File (0.2.0)
+  - SLToolObjCKit/Network (0.2.0):
     - AFNetworking
     - SLCategoryObjCKit/String
     - SVProgressHUD
-  - SLToolObjCKit/ProgressHUD (0.1.0):
+  - SLToolObjCKit/ProgressHUD (0.2.0):
     - SVProgressHUD
-  - SLToolObjCKit/UpdateApp (0.1.0)
-  - SLToolObjCKit/UserDefaults (0.1.0)
+  - SLToolObjCKit/Thread (0.2.0)
+  - SLToolObjCKit/UpdateApp (0.2.0)
+  - SLToolObjCKit/UserDefaults (0.2.0)
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
@@ -50,7 +52,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   SLCategoryObjCKit: 46eed3de58cc886661eb99498fec377ccd932559
-  SLToolObjCKit: bbbae6f114a0d3746a2b6178ca50c96b79eae504
+  SLToolObjCKit: 32f78582b9f34f973d7dac31e6a9f3683c2f054a
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
 PODFILE CHECKSUM: d36088fe82ade4eadb79ff89a5097731c4b2bb8f
