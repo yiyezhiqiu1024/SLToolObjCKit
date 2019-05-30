@@ -12,6 +12,8 @@
 @interface SLDownloadViewController ()
 /** 下载工具 */
 @property (strong, nonatomic) SLDownloadTool *downloadTool;
+/** 定时器 */
+@property (weak, nonatomic) NSTimer *timer;
 @end
 
 @implementation SLDownloadViewController
@@ -39,11 +41,28 @@
     [self.downloadTool sl_cancelTaskAndCleanCaches];
 }
 
+- (void)update {
+    NSLog(@"下载器的任务状态 %zd", self.downloadTool.state);
+}
+
 #pragma mark - Getter
 - (SLDownloadTool *)downloadTool {
     if (!_downloadTool) _downloadTool = [[SLDownloadTool alloc] init];
 
     return _downloadTool;
+}
+
+- (NSTimer *)timer {
+    if (!_timer) {
+        NSTimer *timer = [NSTimer timerWithTimeInterval:1
+                                                 target:self
+                                               selector:@selector(update)
+                                               userInfo:nil
+                                                repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+        _timer = timer;
+    }
+    return _timer;
 }
 
 

@@ -14,8 +14,8 @@
 
 @interface SLDownloadTool () <NSURLSessionDataDelegate>
 {
-    NSInteger _tmpSize;
-    NSInteger _totalSize;
+    NSInteger _tmpSize; // 记录文件临时下载大小
+    NSInteger _totalSize; // 记录文件总大小
 }
 
 /** 文件正在下载路径 */
@@ -57,6 +57,7 @@
     if ([SLFileTool sl_fileExist:self.downloadedPath]) {
         // UNDO: 告诉外界，已经下载完成
         NSLog(@"已经下载完成");
+        self.state = SLDownloadStateSuccess;
         return;
     }
     
@@ -75,10 +76,14 @@
 }
 
 - (void)sl_pauseTask {
-    [self.dataTask suspend];
+    if (self.state == SLDownloadStateDownloading) {
+        self.state = SLDownloadStatePause;
+        [self.dataTask suspend];
+    }
 }
 
 - (void)sl_cancelTask {
+    self.state = SLDownloadStatePause;
     [self.session invalidateAndCancel];
     self.session = nil;
 }
@@ -118,6 +123,8 @@ didReceiveResponse:(NSHTTPURLResponse *)response
         // 2.移动到下载完成文件夹
         [SLFileTool sl_moveFile:self.downloadingPath toPath:self.downloadedPath];
         NSLog(@"移动文件到下载完成");
+        // 3.修改状态
+        self.state = SLDownloadStateSuccess;
         return;
     }
     
@@ -133,6 +140,7 @@ didReceiveResponse:(NSHTTPURLResponse *)response
         return;
     }
     
+    self.state = SLDownloadStateDownloading;
     // 确定开始下载数据
     self.outputStream = [NSOutputStream outputStreamToFileAtPath:self.downloadingPath append:YES];
     [self.outputStream open];
@@ -162,13 +170,16 @@ didReceiveResponse:(NSHTTPURLResponse *)response
  @param task 任务
  @param error 错误
  */
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
+- (void)URLSession:(NSURLSession *)session
+              task:(NSURLSessionTask *)task
+didCompleteWithError:(NSError *)error {
     NSLog(@"请求完成");
 
     [self.outputStream close];
     
     if (error) {
-        NSLog(@"有问题");
+        NSLog(@"有问题--【%zd】--【%@】", error.code, error.localizedDescription);
+        self.state = (-999 == error.code) ? SLDownloadStatePause : SLDownloadStateFailed;
         return;
     }
     
@@ -176,6 +187,8 @@ didReceiveResponse:(NSHTTPURLResponse *)response
     // 数据是肯定可以请求完毕
     // 判断, 本地缓存 == 文件总大小 {filename: filesize: md5:xxx}
     // 如果等于 => 验证, 是否文件完整(file md5 )
+    [SLFileTool sl_moveFile:self.downloadingPath toPath:self.downloadedPath];
+    self.state = SLDownloadStateSuccess;
     
 }
 
@@ -194,7 +207,7 @@ didReceiveResponse:(NSHTTPURLResponse *)response
     [request setValue:[NSString stringWithFormat:@"bytes=%ld-", (long)offset] forHTTPHeaderField:@"Range"];
     // session 分配的task, 默认情况, 挂起状态
     self.dataTask = [self.session dataTaskWithRequest:request];
-    [self.dataTask resume];
+    [self resumeTask];
 }
 
 /**
@@ -203,7 +216,18 @@ didReceiveResponse:(NSHTTPURLResponse *)response
  - 解决方案: 引入状态
  */
 - (void)resumeTask {
-    [self.dataTask resume];
+    if (self.dataTask && self.state == SLDownloadStatePause) {
+        self.state = SLDownloadStateDownloading;
+        [self.dataTask resume];
+    }
+}
+
+#pragma mark - Setter
+- (void)setState:(SLDownloadState)state {
+    // 数据过滤
+    if (_state == state) return;
+    
+    _state = state;
 }
 
 #pragma mark - Getter

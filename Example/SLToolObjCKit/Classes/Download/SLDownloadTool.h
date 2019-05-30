@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, SLDownloadState) {
+    SLDownloadStatePause,
+    SLDownloadStateDownloading,
+    SLDownloadStateSuccess,
+    SLDownloadStateFailed,
+
+};
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SLDownloadTool : NSObject
@@ -33,6 +41,9 @@ NS_ASSUME_NONNULL_BEGIN
  取消任务，并清理资源
  */
 - (void)sl_cancelTaskAndCleanCaches;
+
+/** 下载状态 */
+@property (assign, nonatomic) SLDownloadState state;
 
 @end
 
