@@ -8,8 +8,28 @@
 #import "SLFileTool.h"
 
 @implementation SLFileTool
++ (BOOL)sl_fileExist:(NSString *)filePath {
+    if (0 == filePath.length) return NO;
+    return [[NSFileManager defaultManager] fileExistsAtPath:filePath];
+}
 
-+ (void)sl_getFileSize:(NSString *)directoryPath completion:(void(^)(NSInteger))completion {
++ (NSInteger)sl_fileSize:(NSString *)filePath {
+    if (0 == filePath.length) return 0;
+
+    NSDictionary *fileInfo = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:nil];
+    return (NSInteger)[fileInfo fileSize];
+}
+
++ (void)sl_moveFile:(NSString *)atPath toPath:(NSString *)toPath {
+    if (atPath == toPath) return;
+    [[NSFileManager defaultManager] moveItemAtPath:atPath toPath:toPath error:nil];
+}
+
++ (void)sl_removeFile:(NSString *)filePath {
+    [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
+}
+
++ (void)sl_directorySize:(NSString *)directoryPath completion:(void(^)(NSInteger))completion {
     // 获取文件管理者
     NSFileManager *mgr = [NSFileManager defaultManager];
     BOOL isDirectory;
@@ -47,10 +67,10 @@
             
             // 获取文件属性
             // attributesOfItemAtPath:只能获取文件,不能获取文件夹
-            NSDictionary *attr = [mgr attributesOfItemAtPath:filePath error:nil];
+            NSDictionary *fileInfo = [mgr attributesOfItemAtPath:filePath error:nil];
             
             // 获取文件尺寸
-            NSInteger fileSize = (NSInteger)[attr fileSize];
+            NSInteger fileSize = (NSInteger)[fileInfo fileSize];
             
             totalSize += fileSize;
         }
@@ -64,7 +84,7 @@
     });
 }
 
-+ (void)sl_removeDirectoryPath:(NSString *)directoryPath {
++ (void)sl_removeDirectory:(NSString *)directoryPath {
     // 获取文件管理者
     NSFileManager *mgr = [NSFileManager defaultManager];
     
@@ -76,8 +96,7 @@
         // name:异常名称
         // reason:报错原因
         NSException *excp = [NSException exceptionWithName:@"pathError" reason:@"需要传入的是文件夹路径,并且路径要存在" userInfo:nil];
-        [excp raise];
-        
+        [excp raise];                
     }
     
     // 获取cache文件夹下所有文件,不包括子路径的子路径
@@ -92,4 +111,6 @@
     }
 
 }
+
+
 @end

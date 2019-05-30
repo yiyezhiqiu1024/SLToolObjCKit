@@ -69,9 +69,9 @@ Pod::Spec.new do |s|
             alert.source_files = 'SLToolObjCKit/Classes/Alert/*.{h,m}'
         end
         
-        s.subspec 'File' do |file|
-            file.source_files = 'SLToolObjCKit/Classes/File/*.{h,m}'
-        end
+        #s.subspec 'File' do |file|
+        #    file.source_files = 'SLToolObjCKit/Classes/File/*.{h,m}'
+        #end
         
         s.subspec 'Network' do |network|
             network.source_files = 'SLToolObjCKit/Classes/Network/*.{h,m}'

@@ -9,7 +9,6 @@
 #import "SLTimerViewController.h"
 
 #import <SLToolObjCKit/SLTimer.h>
-//#import <SLToolObjCKit-umbrella.h>
 
 @interface SLTimerViewController ()
 @property (copy, nonatomic) NSString *name;

@@ -22,11 +22,6 @@
 }
 
 #pragma mark - Table view data source
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//
-//    return 1;
-//}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.items.count;
 }
@@ -70,7 +65,8 @@
     if (!_items) {
         _items = @[
                    @"线程保活-SLThreadViewController",
-                   @"定时器-SLTimerViewController"
+                   @"定时器-SLTimerViewController",
+                   @"下载器-SLDownloadViewController"
                    ];
     }
     
