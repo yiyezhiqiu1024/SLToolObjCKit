@@ -155,19 +155,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7VF-dg-qH7">
-                                <rect key="frame" x="150.5" y="316.5" width="74" height="34"/>
-                                <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="    下载    "/>
-                                <connections>
-                                    <action selector="Downloading" destination="b8k-g9-HKp" eventType="touchUpInside" id="X8w-wq-J5h"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1d2-vM-EKz">
+                                <rect key="frame" x="129.5" y="258" width="116" height="151"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7VF-dg-qH7">
+                                        <rect key="frame" x="0.0" y="0.0" width="116" height="34"/>
+                                        <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="下载/继续"/>
+                                        <connections>
+                                            <action selector="startOrResume" destination="b8k-g9-HKp" eventType="touchUpInside" id="8Hi-se-V8o"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MXf-2f-NiN">
+                                        <rect key="frame" x="0.0" y="39" width="116" height="34"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="暂停"/>
+                                        <connections>
+                                            <action selector="pause" destination="b8k-g9-HKp" eventType="touchUpInside" id="Dk6-0L-oNl"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAR-nv-Zx0">
+                                        <rect key="frame" x="0.0" y="78" width="116" height="34"/>
+                                        <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="取消"/>
+                                        <connections>
+                                            <action selector="cancel" destination="b8k-g9-HKp" eventType="touchUpInside" id="F4N-GP-URX"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ghH-8F-xT6">
+                                        <rect key="frame" x="0.0" y="117" width="116" height="34"/>
+                                        <color key="backgroundColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="取消/清理缓存"/>
+                                        <connections>
+                                            <action selector="cancelAndClean" destination="b8k-g9-HKp" eventType="touchUpInside" id="Sd7-xk-XqY"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="7VF-dg-qH7" firstAttribute="centerX" secondItem="1Xt-Em-i0y" secondAttribute="centerX" id="GsY-0S-6W7"/>
-                            <constraint firstItem="7VF-dg-qH7" firstAttribute="centerY" secondItem="1Xt-Em-i0y" secondAttribute="centerY" id="cfk-BT-sDF"/>
+                            <constraint firstItem="1d2-vM-EKz" firstAttribute="centerY" secondItem="1Xt-Em-i0y" secondAttribute="centerY" id="WLu-2g-1zi"/>
+                            <constraint firstItem="1d2-vM-EKz" firstAttribute="centerX" secondItem="1Xt-Em-i0y" secondAttribute="centerX" id="lyl-VU-Baq"/>
                         </constraints>
                     </view>
                 </viewController>

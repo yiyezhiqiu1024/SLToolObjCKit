@@ -22,9 +22,21 @@
 }
 
 #pragma mark - Action
-- (IBAction)Downloading {
+- (IBAction)startOrResume {
     NSURL *url = [NSURL URLWithString:@"http://free2.macx.cn:8281/tools/photo/SnapNDragPro418.dmg"];
     [self.downloadTool sl_downloadWithURL:url];
+}
+
+- (IBAction)pause {
+    [self.downloadTool sl_pauseTask];
+}
+
+- (IBAction)cancel {
+    [self.downloadTool sl_cancelTask];
+}
+
+- (IBAction)cancelAndClean {
+    [self.downloadTool sl_cancelTaskAndCleanCaches];
 }
 
 #pragma mark - Getter
