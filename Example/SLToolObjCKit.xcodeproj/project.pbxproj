@@ -14,7 +14,6 @@
 		6003F598195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F596195388D20070C39A /* InfoPlist.strings */; };
 		6003F59A195388D20070C39A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F599195388D20070C39A /* main.m */; };
 		6003F59E195388D20070C39A /* SLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F59D195388D20070C39A /* SLAppDelegate.m */; };
-		6003F5A7195388D20070C39A /* SLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* SLViewController.m */; };
 		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
@@ -24,6 +23,7 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		9014378E3FB882A79A878B17 /* Pods_SLToolObjCKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1631EFDFF69EDB8486DD3A4 /* Pods_SLToolObjCKit_Tests.framework */; };
+		AEB169A3229F71F000DCA673 /* SLMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB169A2229F71F000DCA673 /* SLMainTableViewController.m */; };
 		AEB9C4AA221E79B200EFFA76 /* debug.cer in Resources */ = {isa = PBXBuildFile; fileRef = AEB9C4A8221E79B200EFFA76 /* debug.cer */; };
 		AEB9C4AB221E79B200EFFA76 /* release.cer in Resources */ = {isa = PBXBuildFile; fileRef = AEB9C4A9221E79B200EFFA76 /* release.cer */; };
 		AEBAA35D229E85DF00C4C7B2 /* SLThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEBAA35C229E85DF00C4C7B2 /* SLThreadViewController.m */; };
@@ -56,8 +56,6 @@
 		6003F59B195388D20070C39A /* SLToolObjCKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SLToolObjCKit-Prefix.pch"; sourceTree = "<group>"; };
 		6003F59C195388D20070C39A /* SLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLAppDelegate.h; sourceTree = "<group>"; };
 		6003F59D195388D20070C39A /* SLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLAppDelegate.m; sourceTree = "<group>"; };
-		6003F5A5195388D20070C39A /* SLViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLViewController.h; sourceTree = "<group>"; };
-		6003F5A6195388D20070C39A /* SLViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLViewController.m; sourceTree = "<group>"; };
 		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6003F5AE195388D20070C39A /* SLToolObjCKit_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SLToolObjCKit_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -70,6 +68,8 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		939445178532249D00C278BA /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		A1631EFDFF69EDB8486DD3A4 /* Pods_SLToolObjCKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLToolObjCKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AEB169A1229F71F000DCA673 /* SLMainTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLMainTableViewController.h; sourceTree = "<group>"; };
+		AEB169A2229F71F000DCA673 /* SLMainTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLMainTableViewController.m; sourceTree = "<group>"; };
 		AEB9C4A8221E79B200EFFA76 /* debug.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = debug.cer; sourceTree = "<group>"; };
 		AEB9C4A9221E79B200EFFA76 /* release.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = release.cer; sourceTree = "<group>"; };
 		AEBAA35B229E85DF00C4C7B2 /* SLThreadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLThreadViewController.h; sourceTree = "<group>"; };
@@ -142,16 +142,11 @@
 		6003F593195388D20070C39A /* Example for SLToolObjCKit */ = {
 			isa = PBXGroup;
 			children = (
+				AEB1699F229F71CE00DCA673 /* Classes */,
 				AEB9C4A7221E79B200EFFA76 /* Resource */,
 				6003F59C195388D20070C39A /* SLAppDelegate.h */,
 				6003F59D195388D20070C39A /* SLAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
-				6003F5A5195388D20070C39A /* SLViewController.h */,
-				6003F5A6195388D20070C39A /* SLViewController.m */,
-				AEBAA35E229E873C00C4C7B2 /* SLTimerViewController.h */,
-				AEBAA35F229E873C00C4C7B2 /* SLTimerViewController.m */,
-				AEBAA35B229E85DF00C4C7B2 /* SLThreadViewController.h */,
-				AEBAA35C229E85DF00C4C7B2 /* SLThreadViewController.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -209,6 +204,27 @@
 				AF8552D07E3060BA693E2BE2 /* Pods-SLToolObjCKit_Tests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		AEB1699F229F71CE00DCA673 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				AEB169A0229F71D700DCA673 /* Controller */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		AEB169A0229F71D700DCA673 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AEB169A1229F71F000DCA673 /* SLMainTableViewController.h */,
+				AEB169A2229F71F000DCA673 /* SLMainTableViewController.m */,
+				AEBAA35E229E873C00C4C7B2 /* SLTimerViewController.h */,
+				AEBAA35F229E873C00C4C7B2 /* SLTimerViewController.m */,
+				AEBAA35B229E85DF00C4C7B2 /* SLThreadViewController.h */,
+				AEBAA35C229E85DF00C4C7B2 /* SLThreadViewController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		AEB9C4A7221E79B200EFFA76 /* Resource */ = {
@@ -405,7 +421,7 @@
 			files = (
 				6003F59E195388D20070C39A /* SLAppDelegate.m in Sources */,
 				AEBAA35D229E85DF00C4C7B2 /* SLThreadViewController.m in Sources */,
-				6003F5A7195388D20070C39A /* SLViewController.m in Sources */,
+				AEB169A3229F71F000DCA673 /* SLMainTableViewController.m in Sources */,
 				AEBAA360229E873C00C4C7B2 /* SLTimerViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
