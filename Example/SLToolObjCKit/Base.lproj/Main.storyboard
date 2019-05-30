@@ -41,10 +41,10 @@
             </objects>
             <point key="canvasLocation" x="1244" y="432.23388305847078"/>
         </scene>
-        <!--Thread View Controller-->
+        <!--Timer View Controller-->
         <scene sceneID="sGa-Da-WYL">
             <objects>
-                <viewController id="gmR-b0-xXn" customClass="SLThreadViewController" sceneMemberID="viewController">
+                <viewController id="gmR-b0-xXn" customClass="SLTimerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5Ey-iA-1pD"/>
                         <viewControllerLayoutGuide type="bottom" id="joM-8b-ca1"/>

@@ -27,6 +27,7 @@
 		AEB9C4AA221E79B200EFFA76 /* debug.cer in Resources */ = {isa = PBXBuildFile; fileRef = AEB9C4A8221E79B200EFFA76 /* debug.cer */; };
 		AEB9C4AB221E79B200EFFA76 /* release.cer in Resources */ = {isa = PBXBuildFile; fileRef = AEB9C4A9221E79B200EFFA76 /* release.cer */; };
 		AEBAA35D229E85DF00C4C7B2 /* SLThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEBAA35C229E85DF00C4C7B2 /* SLThreadViewController.m */; };
+		AEBAA360229E873C00C4C7B2 /* SLTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEBAA35F229E873C00C4C7B2 /* SLTimerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,8 @@
 		AEB9C4A9221E79B200EFFA76 /* release.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = release.cer; sourceTree = "<group>"; };
 		AEBAA35B229E85DF00C4C7B2 /* SLThreadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLThreadViewController.h; sourceTree = "<group>"; };
 		AEBAA35C229E85DF00C4C7B2 /* SLThreadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLThreadViewController.m; sourceTree = "<group>"; };
+		AEBAA35E229E873C00C4C7B2 /* SLTimerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLTimerViewController.h; sourceTree = "<group>"; };
+		AEBAA35F229E873C00C4C7B2 /* SLTimerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLTimerViewController.m; sourceTree = "<group>"; };
 		AF8552D07E3060BA693E2BE2 /* Pods-SLToolObjCKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLToolObjCKit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SLToolObjCKit_Tests/Pods-SLToolObjCKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -145,6 +148,8 @@
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* SLViewController.h */,
 				6003F5A6195388D20070C39A /* SLViewController.m */,
+				AEBAA35E229E873C00C4C7B2 /* SLTimerViewController.h */,
+				AEBAA35F229E873C00C4C7B2 /* SLTimerViewController.m */,
 				AEBAA35B229E85DF00C4C7B2 /* SLThreadViewController.h */,
 				AEBAA35C229E85DF00C4C7B2 /* SLThreadViewController.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
@@ -401,6 +406,7 @@
 				6003F59E195388D20070C39A /* SLAppDelegate.m in Sources */,
 				AEBAA35D229E85DF00C4C7B2 /* SLThreadViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* SLViewController.m in Sources */,
+				AEBAA360229E873C00C4C7B2 /* SLTimerViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

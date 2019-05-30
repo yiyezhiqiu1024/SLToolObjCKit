@@ -28,7 +28,7 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [SLNetworkTool sl_customSecurityPolicyWithCerName:@"release" isByPassSLL:NO];
+//    [SLNetworkTool sl_customSecurityPolicyWithCerName:@"release" isByPassSLL:NO];
 }
 
 @end
