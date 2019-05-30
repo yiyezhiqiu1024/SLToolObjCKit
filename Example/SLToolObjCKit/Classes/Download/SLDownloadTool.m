@@ -24,6 +24,8 @@
 @property (copy, nonatomic) NSString *downloadedPath;
 
 @property (strong, nonatomic) NSURLSession *session;
+/** 输出流 */
+@property (strong, nonatomic) NSOutputStream *outputStream;
 
 @end
 
@@ -40,6 +42,7 @@
 
     if ([SLFileTool sl_fileExist:self.downloadedPath]) {
         // UNDO: 告诉外界，已经下载完成
+        NSLog(@"已经下载完成");
         return;
     }
     
@@ -59,6 +62,7 @@
 }
 
 #pragma mark - NSURLSessionDataDelegate
+// 第一次接受到相应的时候调用(响应头, 并没有具体的资源内容)
 - (void)URLSession:(NSURLSession *)session
           dataTask:(NSURLSessionDataTask *)dataTask
 didReceiveResponse:(NSHTTPURLResponse *)response
@@ -76,20 +80,55 @@ didReceiveResponse:(NSHTTPURLResponse *)response
     if (_tmpSize == _totalSize) {
         // 移动到下载完成文件夹
         [SLFileTool sl_moveFile:self.downloadingPath toPath:self.downloadedPath];
+        NSLog(@"移动文件到下载完成");
     }
     
     if (_tmpSize > _totalSize) {
         // 1.取消请求
         completionHandler(NSURLSessionResponseCancel);
         // 2.删除临时缓存
+        NSLog(@"删除临时缓存");
         [SLFileTool sl_removeFile:self.downloadingPath];
         // 3.从0开始下载
+        NSLog(@"重新开始下载");
         [self sl_downloadWithURL:response.URL];
     }
     
+    // 确定开始下载数据
+    self.outputStream = [NSOutputStream outputStreamToFileAtPath:self.downloadingPath append:YES];
+    [self.outputStream open];
     // 继续接收数据
     completionHandler(NSURLSessionResponseAllow);
 }
+
+// 当用户确定, 继续接受数据的时候调用
+- (void)URLSession:(NSURLSession *)session
+          dataTask:(NSURLSessionDataTask *)dataTask
+    didReceiveData:(NSData *)data {
+
+    [self.outputStream write:data.bytes maxLength:data.length];
+     NSLog(@"在接收后续数据");
+}
+
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
+    NSLog(@"请求完成");
+
+    [self.outputStream close];
+    
+    if (error) {
+        NSLog(@"有问题");
+        return;
+    }
+    
+    // 不一定是成功
+    // 数据是肯定可以请求完毕
+    // 判断, 本地缓存 == 文件总大小 {filename: filesize: md5:xxx}
+    // 如果等于 => 验证, 是否文件完整(file md5 )
+    
+    
+}
+
+
 
 #pragma mark - Private methond
 /**
@@ -102,7 +141,7 @@ didReceiveResponse:(NSHTTPURLResponse *)response
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                                        timeoutInterval:0];
-    [request setValue:[NSString stringWithFormat:@"bytes=%lld-", (long long)offset] forHTTPHeaderField:@"Range"];
+    [request setValue:[NSString stringWithFormat:@"bytes=%ld-", (long)offset] forHTTPHeaderField:@"Range"];
     NSURLSessionDataTask *dataTask = [self.session dataTaskWithRequest:request];
     [dataTask resume];
 }
