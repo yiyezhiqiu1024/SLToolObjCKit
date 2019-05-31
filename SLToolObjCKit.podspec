@@ -69,9 +69,9 @@ Pod::Spec.new do |s|
             alert.source_files = 'SLToolObjCKit/Classes/Alert/*.{h,m}'
         end
         
-        #s.subspec 'File' do |file|
-        #    file.source_files = 'SLToolObjCKit/Classes/File/*.{h,m}'
-        #end
+        s.subspec 'File' do |file|
+            file.source_files = 'SLToolObjCKit/Classes/File/*.{h,m}'
+        end
         
         s.subspec 'Network' do |network|
             network.source_files = 'SLToolObjCKit/Classes/Network/*.{h,m}'
@@ -99,6 +99,10 @@ Pod::Spec.new do |s|
         
         s.subspec 'Timer' do |timer|
             timer.source_files = 'SLToolObjCKit/Classes/Timer/*.{h,m}'
+        end
+        
+        s.subspec 'Download' do |download|
+            download.source_files = 'SLToolObjCKit/Classes/Download/*.{h,m}'
         end
                 
     end

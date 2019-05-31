@@ -228,7 +228,7 @@ didCompleteWithError:(NSError *)error {
 /**
  根据开始字节，请求资源
 
- @param url 资源路径
+ @param URL 资源路径
  @param offset 开始字节
  */
 - (void)downloadWithURL:(NSURL *)URL offset:(NSInteger)offset {

@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  下载网络资源
 
- @param url 资源路径
+ @param URL 资源路径
  */
 - (void)downloadWithURL:(NSURL *)URL;
 

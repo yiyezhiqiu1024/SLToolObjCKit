@@ -23,12 +23,8 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		9014378E3FB882A79A878B17 /* Pods_SLToolObjCKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1631EFDFF69EDB8486DD3A4 /* Pods_SLToolObjCKit_Tests.framework */; };
-		AE54D08722A0BE550075941B /* SLDownloadToolManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE54D08622A0BE550075941B /* SLDownloadToolManager.m */; };
-		AE54D08E22A0CE9A0075941B /* NSString+SLMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = AE54D08D22A0CE990075941B /* NSString+SLMD5.m */; };
 		AEB169A3229F71F000DCA673 /* SLMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB169A2229F71F000DCA673 /* SLMainTableViewController.m */; };
 		AEB169B8229F860800DCA673 /* SLDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB169B7229F860800DCA673 /* SLDownloadViewController.m */; };
-		AEB169BF229FA6CC00DCA673 /* SLFileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB169BE229FA6CC00DCA673 /* SLFileTool.m */; };
-		AEB169C1229FB4F000DCA673 /* SLDownloadTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB169BA229F863600DCA673 /* SLDownloadTool.m */; };
 		AEB9C4AA221E79B200EFFA76 /* debug.cer in Resources */ = {isa = PBXBuildFile; fileRef = AEB9C4A8221E79B200EFFA76 /* debug.cer */; };
 		AEB9C4AB221E79B200EFFA76 /* release.cer in Resources */ = {isa = PBXBuildFile; fileRef = AEB9C4A9221E79B200EFFA76 /* release.cer */; };
 		AEBAA35D229E85DF00C4C7B2 /* SLThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEBAA35C229E85DF00C4C7B2 /* SLThreadViewController.m */; };
@@ -73,18 +69,10 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		939445178532249D00C278BA /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		A1631EFDFF69EDB8486DD3A4 /* Pods_SLToolObjCKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLToolObjCKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AE54D08522A0BE550075941B /* SLDownloadToolManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLDownloadToolManager.h; sourceTree = "<group>"; };
-		AE54D08622A0BE550075941B /* SLDownloadToolManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLDownloadToolManager.m; sourceTree = "<group>"; };
-		AE54D08C22A0CE990075941B /* NSString+SLMD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SLMD5.h"; sourceTree = "<group>"; };
-		AE54D08D22A0CE990075941B /* NSString+SLMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SLMD5.m"; sourceTree = "<group>"; };
 		AEB169A1229F71F000DCA673 /* SLMainTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLMainTableViewController.h; sourceTree = "<group>"; };
 		AEB169A2229F71F000DCA673 /* SLMainTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLMainTableViewController.m; sourceTree = "<group>"; };
 		AEB169B6229F860800DCA673 /* SLDownloadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLDownloadViewController.h; sourceTree = "<group>"; };
 		AEB169B7229F860800DCA673 /* SLDownloadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLDownloadViewController.m; sourceTree = "<group>"; };
-		AEB169B9229F863600DCA673 /* SLDownloadTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLDownloadTool.h; sourceTree = "<group>"; };
-		AEB169BA229F863600DCA673 /* SLDownloadTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLDownloadTool.m; sourceTree = "<group>"; };
-		AEB169BD229FA6CC00DCA673 /* SLFileTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLFileTool.h; sourceTree = "<group>"; };
-		AEB169BE229FA6CC00DCA673 /* SLFileTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLFileTool.m; sourceTree = "<group>"; };
 		AEB9C4A8221E79B200EFFA76 /* debug.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = debug.cer; sourceTree = "<group>"; };
 		AEB9C4A9221E79B200EFFA76 /* release.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = release.cer; sourceTree = "<group>"; };
 		AEBAA35B229E85DF00C4C7B2 /* SLThreadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLThreadViewController.h; sourceTree = "<group>"; };
@@ -221,21 +209,9 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		AE54D08B22A0CE900075941B /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				AE54D08C22A0CE990075941B /* NSString+SLMD5.h */,
-				AE54D08D22A0CE990075941B /* NSString+SLMD5.m */,
-			);
-			path = Category;
-			sourceTree = "<group>";
-		};
 		AEB1699F229F71CE00DCA673 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				AE54D08B22A0CE900075941B /* Category */,
-				AEB169C0229FA6D300DCA673 /* Download */,
-				AEB169BC229FA6CC00DCA673 /* File */,
 				AEB169A0229F71D700DCA673 /* Controller */,
 			);
 			path = Classes;
@@ -254,26 +230,6 @@
 				AEB169B7229F860800DCA673 /* SLDownloadViewController.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		AEB169BC229FA6CC00DCA673 /* File */ = {
-			isa = PBXGroup;
-			children = (
-				AEB169BD229FA6CC00DCA673 /* SLFileTool.h */,
-				AEB169BE229FA6CC00DCA673 /* SLFileTool.m */,
-			);
-			path = File;
-			sourceTree = "<group>";
-		};
-		AEB169C0229FA6D300DCA673 /* Download */ = {
-			isa = PBXGroup;
-			children = (
-				AEB169B9229F863600DCA673 /* SLDownloadTool.h */,
-				AEB169BA229F863600DCA673 /* SLDownloadTool.m */,
-				AE54D08522A0BE550075941B /* SLDownloadToolManager.h */,
-				AE54D08622A0BE550075941B /* SLDownloadToolManager.m */,
-			);
-			path = Download;
 			sourceTree = "<group>";
 		};
 		AEB9C4A7221E79B200EFFA76 /* Resource */ = {
@@ -468,14 +424,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AEB169C1229FB4F000DCA673 /* SLDownloadTool.m in Sources */,
-				AE54D08E22A0CE9A0075941B /* NSString+SLMD5.m in Sources */,
 				6003F59E195388D20070C39A /* SLAppDelegate.m in Sources */,
 				AEBAA35D229E85DF00C4C7B2 /* SLThreadViewController.m in Sources */,
 				AEB169A3229F71F000DCA673 /* SLMainTableViewController.m in Sources */,
-				AEB169BF229FA6CC00DCA673 /* SLFileTool.m in Sources */,
 				AEB169B8229F860800DCA673 /* SLDownloadViewController.m in Sources */,
-				AE54D08722A0BE550075941B /* SLDownloadToolManager.m in Sources */,
 				AEBAA360229E873C00C4C7B2 /* SLTimerViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);

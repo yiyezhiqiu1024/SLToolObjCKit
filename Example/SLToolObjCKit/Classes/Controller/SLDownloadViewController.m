@@ -7,13 +7,10 @@
 //
 
 #import "SLDownloadViewController.h"
-#import "SLDownloadToolManager.h"
+
+#import <SLToolObjCKit/SLDownloadToolManager.h>
 
 @interface SLDownloadViewController ()
-/** 下载工具 */
-@property (strong, nonatomic) SLDownloadTool *downloadTool;
-/** 定时器 */
-@property (weak, nonatomic) NSTimer *timer;
 @end
 
 @implementation SLDownloadViewController
