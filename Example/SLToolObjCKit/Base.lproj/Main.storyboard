@@ -204,5 +204,123 @@
             </objects>
             <point key="canvasLocation" x="3880" y="341"/>
         </scene>
+        <!--Audio Player View Controller-->
+        <scene sceneID="TfH-uu-tJ8">
+            <objects>
+                <viewController storyboardIdentifier="SLAudioPlayerViewController" id="Dhd-Y9-rqU" customClass="SLAudioPlayerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xBG-cZ-hG0"/>
+                        <viewControllerLayoutGuide type="bottom" id="gWS-bc-OMD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uxk-c7-fUW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dAT-PH-MpV">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Owr-wj-yW7">
+                                        <rect key="frame" x="166" y="116" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="播放"/>
+                                        <connections>
+                                            <action selector="play:" destination="Dhd-Y9-rqU" eventType="touchUpInside" id="geE-xy-OlY"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="15L-59-mWI">
+                                        <rect key="frame" x="166" y="184" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="暂停"/>
+                                        <connections>
+                                            <action selector="pause:" destination="Dhd-Y9-rqU" eventType="touchUpInside" id="h6E-e6-efG"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcA-VV-ny7">
+                                        <rect key="frame" x="166" y="265" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="继续"/>
+                                        <connections>
+                                            <action selector="resume:" destination="Dhd-Y9-rqU" eventType="touchUpInside" id="9l3-eY-wsc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ssv-Nj-bOi">
+                                        <rect key="frame" x="153" y="353" width="73" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="快进/快退"/>
+                                        <connections>
+                                            <action selector="kuaijin:" destination="Dhd-Y9-rqU" eventType="touchUpInside" id="A0I-jl-q0r"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gcC-3T-leN">
+                                        <rect key="frame" x="153" y="513" width="73" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="静音"/>
+                                        <state key="selected" title="取消静音"/>
+                                        <connections>
+                                            <action selector="muted:" destination="Dhd-Y9-rqU" eventType="touchUpInside" id="EwX-d6-Pfl"/>
+                                        </connections>
+                                    </button>
+                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Q6U-WY-1Hn">
+                                        <rect key="frame" x="64" y="395" width="255" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="progress:" destination="Dhd-Y9-rqU" eventType="valueChanged" id="IFR-01-S0b"/>
+                                        </connections>
+                                    </slider>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZWs-Gc-eAg">
+                                        <rect key="frame" x="153" y="460" width="73" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="倍速"/>
+                                        <connections>
+                                            <action selector="rate:" destination="Dhd-Y9-rqU" eventType="touchUpInside" id="TZT-Xj-HjB"/>
+                                        </connections>
+                                    </button>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DrM-zw-gBX">
+                                        <rect key="frame" x="113" y="647" width="150" height="2"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </progressView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJ8-H7-ghS">
+                                        <rect key="frame" x="37" y="382" width="73" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="w5h-tD-0JP">
+                                        <rect key="frame" x="57" y="561" width="262" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="volume:" destination="Dhd-Y9-rqU" eventType="valueChanged" id="DGC-bJ-Mw8"/>
+                                        </connections>
+                                    </slider>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJu-pi-K1Y">
+                                        <rect key="frame" x="284" y="382" width="66" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dAT-PH-MpV" firstAttribute="leading" secondItem="uxk-c7-fUW" secondAttribute="leading" id="5Vm-5S-OgS"/>
+                            <constraint firstItem="dAT-PH-MpV" firstAttribute="top" secondItem="uxk-c7-fUW" secondAttribute="top" id="H9P-Km-dmt"/>
+                            <constraint firstAttribute="trailing" secondItem="dAT-PH-MpV" secondAttribute="trailing" id="W1c-U5-X2L"/>
+                            <constraint firstItem="gWS-bc-OMD" firstAttribute="top" secondItem="dAT-PH-MpV" secondAttribute="bottom" id="lfl-sQ-Evc"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="loadPV" destination="DrM-zw-gBX" id="mFr-jA-mLQ"/>
+                        <outlet property="playTimeLabel" destination="fJ8-H7-ghS" id="tUq-MJ-R0k"/>
+                        <outlet property="totalTimeLabel" destination="NJu-pi-K1Y" id="7Ys-zr-0QR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WoT-NM-Fef" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4588" y="341"/>
+        </scene>
     </scenes>
 </document>

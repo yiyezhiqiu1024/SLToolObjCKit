@@ -67,7 +67,7 @@
                    @"线程保活-SLThreadViewController",
                    @"定时器-SLTimerViewController",
                    @"下载器-SLDownloadViewController",
-                   @"远程音频播放-SLRemoteAudioPlayerViewController"
+                   @"远程音频播放-SLAudioPlayerViewController"
                    ];
     }
     
