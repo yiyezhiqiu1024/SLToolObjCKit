@@ -1,9 +1,8 @@
 //
 //  SLDownloadTool.h
-//  SLToolObjCKit_Example
+//  SLToolObjCKit
 //
 //  Created by CoderSLZeng on 2019/5/30.
-//  Copyright © 2019 CoderSLZeng. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -25,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SLDownloadTool : NSObject
 
-- (void)sl_downloadWithURL:(NSURL *)URL
+- (void)downloadWithURL:(NSURL *)URL
    info:(DownloadInfoBlock)info
            progress:(DownloadProgressBlock)progress
             success:(DownloadSuccessBlock)success
@@ -36,22 +35,27 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param url 资源路径
  */
-- (void)sl_downloadWithURL:(NSURL *)URL;
+- (void)downloadWithURL:(NSURL *)URL;
+
+/**
+ 继续任务
+ */
+- (void)resumeDownload;
 
 /**
  暂停任务
  */
-- (void)sl_pauseTask;
+- (void)pauseDownload;
 
 /**
  取消任务
  */
-- (void)sl_cancelTask;
+- (void)cancelDownload;
 
 /**
  取消任务，并清理资源
  */
-- (void)sl_cancelTaskAndCleanCaches;
+- (void)cancelDownloadAndCleanCaches;
 
 /** 下载状态 */
 @property (assign, nonatomic, readonly) SLDownloadState state;

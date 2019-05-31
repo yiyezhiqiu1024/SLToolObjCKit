@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @param filePath 文件路径
  */
-+ (BOOL)sl_fileExist:(NSString *)filePath;
++ (BOOL)fileExist:(NSString *)filePath;
 
 /**
  获取文件的大小
@@ -25,14 +25,14 @@ NS_ASSUME_NONNULL_BEGIN
  @param filePath 文件路径
  @return 文件大小
  */
-+ (NSInteger)sl_fileSize:(NSString *)filePath;
++ (NSInteger)fileSize:(NSString *)filePath;
 
 /**
  删除文件
  
  @param filePath 文件路径
  */
-+ (void)sl_removeFile:(NSString *)filePath;
++ (void)removeFile:(NSString *)filePath;
 
 /**
  移动文件
@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param atPath 所在路径
  @param toPath 目标路径
  */
-+ (void)sl_moveFile:(NSString *)atPath toPath:(NSString *)toPath;
++ (void)moveFile:(NSString *)atPath toPath:(NSString *)toPath;
 
 /**
  获取文件夹的大小
@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param directoryPath 文件夹路径
  @param completion 完成之后的回调
  */
-+ (void)sl_directorySize:(NSString *)directoryPath completion:(void(^)(NSInteger))completion;
++ (void)directorySize:(NSString *)directoryPath completion:(void(^)(NSInteger))completion;
 
 
 /**
@@ -56,7 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param directoryPath 文件夹路径
  */
-+ (void)sl_removeDirectory:(NSString *)directoryPath;
++ (void)removeDirectory:(NSString *)directoryPath;
 
 
 NS_ASSUME_NONNULL_END

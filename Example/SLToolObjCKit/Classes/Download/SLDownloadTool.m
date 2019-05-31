@@ -1,9 +1,8 @@
 //
 //  SLDownloadTool.m
-//  SLToolObjCKit_Example
+//  SLToolObjCKit
 //
 //  Created by CoderSLZeng on 2019/5/30.
-//  Copyright © 2019 CoderSLZeng. All rights reserved.
 //
 
 #import "SLDownloadTool.h"
@@ -41,7 +40,7 @@
 
 #pragma mark - Public interface methond
 
-- (void)sl_downloadWithURL:(NSURL *)URL
+- (void)downloadWithURL:(NSURL *)URL
                       info:(DownloadInfoBlock)info
                   progress:(DownloadProgressBlock)progress
                    success:(DownloadSuccessBlock)success
@@ -52,10 +51,10 @@
     self.successBlock = success;
     self.failureBlock = failure;
     
-    [self sl_downloadWithURL:URL];
+    [self downloadWithURL:URL];
 }
 
-- (void)sl_downloadWithURL:(NSURL *)URL {
+- (void)downloadWithURL:(NSURL *)URL {
     
     // 内部实现
     // 1. 真正的从头开始下载
@@ -66,26 +65,26 @@
         // 判断当前状态，如果是暂停状态
         if (self.state == SLDownloadStatePause) {
             // 继续
-            [self resumeTask];
+            [self resumeDownload];
             return;
         }
     }
     
-    [self sl_cancelTask];
+    [self cancelDownload];
     // 1.文件存在
     // 1.1.文件名
     NSString *fileName = URL.lastPathComponent;
     self.downloadingPath = [kTempPath stringByAppendingPathComponent:fileName];
     self.downloadedPath = [kCachesPath stringByAppendingPathComponent:fileName];
 
-    if ([SLFileTool sl_fileExist:self.downloadedPath]) {
+    if ([SLFileTool fileExist:self.downloadedPath]) {
         self.state = SLDownloadStateSuccess;
         return;
     }
     
     // 2.检测：临时文件是否存在
     // 2.1.不存在
-    if (![SLFileTool sl_fileExist:self.downloadingPath]) {
+    if (![SLFileTool fileExist:self.downloadingPath]) {
         // 从0字节开始请求资源
         [self downloadWithURL:URL offset:0];
         return;
@@ -93,26 +92,36 @@
     
     // 2.2.存在：以当前的存在文件大小作为开始字节，请求资源
     // 获取本地文件大小
-    _tmpSize = [SLFileTool sl_fileSize:self.downloadingPath];
+    _tmpSize = [SLFileTool fileSize:self.downloadingPath];
     [self downloadWithURL:URL offset:_tmpSize];
 }
 
-- (void)sl_pauseTask {
+/**
+ 继续任务
+ */
+- (void)resumeDownload {
+    if (self.dataTask && self.state == SLDownloadStatePause) {
+        self.state = SLDownloadStateDownloading;
+        [self.dataTask resume];
+    }
+}
+
+- (void)pauseDownload {
     if (self.state == SLDownloadStateDownloading) {
         self.state = SLDownloadStatePause;
         [self.dataTask suspend];
     }
 }
 
-- (void)sl_cancelTask {
+- (void)cancelDownload {
     self.state = SLDownloadStatePause;
     [self.session invalidateAndCancel];
     self.session = nil;
 }
 
-- (void)sl_cancelTaskAndCleanCaches {
-    [self sl_cancelTask];
-    [SLFileTool sl_removeFile:self.downloadingPath];
+- (void)cancelDownloadAndCleanCaches {
+    [self cancelDownload];
+    [SLFileTool removeFile:self.downloadingPath];
 }
 
 #pragma mark - NSURLSessionDataDelegate
@@ -148,7 +157,7 @@ didReceiveResponse:(NSHTTPURLResponse *)response
         // 1.取消本次请求
         completionHandler(NSURLSessionResponseCancel);
         // 2.移动到下载完成文件夹
-        [SLFileTool sl_moveFile:self.downloadingPath toPath:self.downloadedPath];
+        [SLFileTool moveFile:self.downloadingPath toPath:self.downloadedPath];
         // 3.修改状态
         self.state = SLDownloadStateSuccess;
         return;
@@ -158,9 +167,9 @@ didReceiveResponse:(NSHTTPURLResponse *)response
         // 1.取消本次请求
         completionHandler(NSURLSessionResponseCancel);
         // 2.删除临时缓存
-        [SLFileTool sl_removeFile:self.downloadingPath];
+        [SLFileTool removeFile:self.downloadingPath];
         // 3.从0开始下载
-        [self sl_downloadWithURL:response.URL];
+        [self downloadWithURL:response.URL];
         return;
     }
     
@@ -211,7 +220,7 @@ didCompleteWithError:(NSError *)error {
     // 数据是肯定可以请求完毕
     // 判断, 本地缓存 == 文件总大小 {filename: filesize: md5:xxx}
     // 如果等于 => 验证, 是否文件完整(file md5 )
-    [SLFileTool sl_moveFile:self.downloadingPath toPath:self.downloadedPath];
+    [SLFileTool moveFile:self.downloadingPath toPath:self.downloadedPath];
     self.state = SLDownloadStateSuccess;
 }
 
@@ -222,27 +231,15 @@ didCompleteWithError:(NSError *)error {
  @param url 资源路径
  @param offset 开始字节
  */
-- (void)downloadWithURL:(NSURL *)url offset:(NSInteger)offset {
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+- (void)downloadWithURL:(NSURL *)URL offset:(NSInteger)offset {
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL
                                                            cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                                        timeoutInterval:0];
     // 通过控制range, 控制请求资源字节区间
     [request setValue:[NSString stringWithFormat:@"bytes=%ld-", (long)offset] forHTTPHeaderField:@"Range"];
     // session 分配的task, 默认情况, 挂起状态
     self.dataTask = [self.session dataTaskWithRequest:request];
-    [self resumeTask];
-}
-
-/**
- 继续任务
- - 如果调用了几次暂停, 就要调用几次继续, 才可以继续
- - 解决方案: 引入状态
- */
-- (void)resumeTask {
-    if (self.dataTask && self.state == SLDownloadStatePause) {
-        self.state = SLDownloadStateDownloading;
-        [self.dataTask resume];
-    }
+    [self resumeDownload];
 }
 
 #pragma mark - Setter

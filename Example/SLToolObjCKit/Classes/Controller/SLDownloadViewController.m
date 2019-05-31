@@ -7,7 +7,7 @@
 //
 
 #import "SLDownloadViewController.h"
-#import "SLDownloadTool.h"
+#import "SLDownloadToolManager.h"
 
 @interface SLDownloadViewController ()
 /** 下载工具 */
@@ -26,9 +26,10 @@
 #pragma mark - Action
 - (IBAction)startOrResume {
     NSURL *URL = [NSURL URLWithString:@"http://free2.macx.cn:8281/tools/photo/SnapNDragPro418.dmg"];
-//    [self.downloadTool sl_downloadWithURL:URL];
     
-    [self.downloadTool sl_downloadWithURL:URL info:^(NSInteger totalSize) {
+    NSURL *URL2 = [NSURL URLWithString:@"http://free2.macx.cn:8281/tools/photo/Sip44.dmg"];
+    
+    [[SLDownloadToolManager shareInstance] downloadWithURL:URL info:^(NSInteger totalSize) {
         NSLog(@"下载信息--%ld", (long)totalSize);
     } progress:^(float progress) {
         NSLog(@"下载进度--%f", progress);
@@ -37,43 +38,35 @@
     } failure:^{
         NSLog(@"下载失败了");
     }];
+    
+    [[SLDownloadToolManager shareInstance] downloadWithURL:URL2 info:^(NSInteger totalSize) {
+        NSLog(@"下载信息--%ld", (long)totalSize);
+    } progress:^(float progress) {
+        NSLog(@"下载进度--%f", progress);
+    } success:^(NSString * _Nonnull filePath) {
+        NSLog(@"下载成功--路径:%@", filePath);
+    } failure:^{
+        NSLog(@"下载失败了");
+    }];
 }
 
 - (IBAction)pause {
-    [self.downloadTool sl_pauseTask];
+    [[SLDownloadToolManager shareInstance] pauseAll];
 }
 
 - (IBAction)cancel {
-    [self.downloadTool sl_cancelTask];
+    [[SLDownloadToolManager shareInstance] cancelAll];
 }
 
 - (IBAction)cancelAndClean {
-    [self.downloadTool sl_cancelTaskAndCleanCaches];
+    [[SLDownloadToolManager shareInstance] cancelAndClearCachesAll];
 }
 
 - (void)update {
-    NSLog(@"下载器的任务状态 %zd", self.downloadTool.state);
+
 }
 
-#pragma mark - Getter
-- (SLDownloadTool *)downloadTool {
-    if (!_downloadTool) _downloadTool = [[SLDownloadTool alloc] init];
 
-    return _downloadTool;
-}
-
-- (NSTimer *)timer {
-    if (!_timer) {
-        NSTimer *timer = [NSTimer timerWithTimeInterval:1
-                                                 target:self
-                                               selector:@selector(update)
-                                               userInfo:nil
-                                                repeats:YES];
-        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-        _timer = timer;
-    }
-    return _timer;
-}
 
 
 

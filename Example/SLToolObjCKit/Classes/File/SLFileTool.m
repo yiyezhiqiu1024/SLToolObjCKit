@@ -8,28 +8,28 @@
 #import "SLFileTool.h"
 
 @implementation SLFileTool
-+ (BOOL)sl_fileExist:(NSString *)filePath {
++ (BOOL)fileExist:(NSString *)filePath {
     if (0 == filePath.length) return NO;
     return [[NSFileManager defaultManager] fileExistsAtPath:filePath];
 }
 
-+ (NSInteger)sl_fileSize:(NSString *)filePath {
++ (NSInteger)fileSize:(NSString *)filePath {
     if (0 == filePath.length) return 0;
 
     NSDictionary *fileInfo = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:nil];
     return (NSInteger)[fileInfo fileSize];
 }
 
-+ (void)sl_moveFile:(NSString *)atPath toPath:(NSString *)toPath {
++ (void)moveFile:(NSString *)atPath toPath:(NSString *)toPath {
     if (atPath == toPath) return;
     [[NSFileManager defaultManager] moveItemAtPath:atPath toPath:toPath error:nil];
 }
 
-+ (void)sl_removeFile:(NSString *)filePath {
++ (void)removeFile:(NSString *)filePath {
     [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
 }
 
-+ (void)sl_directorySize:(NSString *)directoryPath completion:(void(^)(NSInteger))completion {
++ (void)directorySize:(NSString *)directoryPath completion:(void(^)(NSInteger))completion {
     // 获取文件管理者
     NSFileManager *mgr = [NSFileManager defaultManager];
     BOOL isDirectory;
@@ -84,7 +84,7 @@
     });
 }
 
-+ (void)sl_removeDirectory:(NSString *)directoryPath {
++ (void)removeDirectory:(NSString *)directoryPath {
     // 获取文件管理者
     NSFileManager *mgr = [NSFileManager defaultManager];
     
