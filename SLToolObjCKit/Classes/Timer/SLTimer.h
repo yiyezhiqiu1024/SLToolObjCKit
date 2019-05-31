@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  执行一个定时器任务
-
+ 
  @param task 任务的回调
  @param start 开始时间
  @param interval 延时时间
@@ -21,11 +21,11 @@ NS_ASSUME_NONNULL_BEGIN
  @param isAsync 是否在异步执行
  @return 定时器标识
  */
-+ (NSString *)sl_excuteTask:(void(^)(void))task
-                            start:(NSTimeInterval)start
-                         interval:(NSTimeInterval)interval
-                        isRepeats:(BOOL)isRepeats
-                          isAsync:(BOOL)isAsync;
++ (NSString *)excuteTask:(void(^)(void))task
+                   start:(NSTimeInterval)start
+                interval:(NSTimeInterval)interval
+               isRepeats:(BOOL)isRepeats
+                 isAsync:(BOOL)isAsync;
 
 /**
  执行一个定时器任务
@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param isAsync 是否在异步执行
  @return 定时器标识
  */
-+ (NSString *)sl_excuteTaskWithTarget:(id)target
++ (NSString *)excuteTaskWithTarget:(id)target
                           selector:(SEL)selector
                              start:(NSTimeInterval)start
                           interval:(NSTimeInterval)interval
@@ -47,10 +47,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  取消定时器任务
-
+ 
  @param name 定时器标识
  */
-+ (void)sl_cancelTask:(NSString *)name;
++ (void)cancelTask:(NSString *)name;
 
 @end
 

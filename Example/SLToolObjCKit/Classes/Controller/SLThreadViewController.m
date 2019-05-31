@@ -30,13 +30,13 @@
 }
 
 - (IBAction)start {
-    [self.myThread sl_executeTask:^{
+    [self.myThread executeTask:^{
         NSLog(@"%@", [NSThread currentThread]);
     }];
 }
 
 - (IBAction)stop {
-    [self.myThread sl_stop];
+    [self.myThread stop];
     NSLog(@"%s", __func__);
     
 }

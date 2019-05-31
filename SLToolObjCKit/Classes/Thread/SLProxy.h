@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** target */
 @property (weak, nonatomic) id target;
 
-+ (instancetype)sl_proxyWithTarget:(id)targe;
++ (instancetype)proxyWithTarget:(id)targe;
 
 @end
 

@@ -20,12 +20,12 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param task 任务
  */
-- (void)sl_executeTask:(SLPermenantThreadTask)task;
+- (void)executeTask:(SLPermenantThreadTask)task;
 
 /**
  停止线程
  */
-- (void)sl_stop;
+- (void)stop;
 
 @end
 

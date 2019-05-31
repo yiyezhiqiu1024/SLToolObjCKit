@@ -14,7 +14,7 @@
 @implementation SLThread
 
 - (void)dealloc {
-//    NSLog(@"%s", __func__);
+    //    NSLog(@"%s", __func__);
 }
 @end
 
@@ -33,7 +33,7 @@
 
 /**
  初始化线程，默认开启
-
+ 
  @return 线程
  */
 - (instancetype)init {
@@ -41,73 +41,73 @@
         self.stopped = NO;
         
         if (@available(iOS 10.0, *)) {
-        
+            
             __weak typeof(self) weakSelf = self;
             self.innerThread = [[SLThread alloc] initWithBlock:^{
                 
                 // 往RunLoop里面添加Source\Timer\Observer
                 [[NSRunLoop currentRunLoop] addPort:[[NSPort alloc] init]
                                             forMode:NSDefaultRunLoopMode];
-
+                
                 while (weakSelf && !weakSelf.isStopped) {
-
+                    
                     [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
                                              beforeDate:[NSDate distantFuture]];
                 }
                 
                 /*
-                // C语言
-                // 创建上下文（要初始化一下结构体）
-                CFRunLoopSourceContext context = { 0 };
-                
-                // 创建source
-                CFRunLoopSourceRef sourceRef = CFRunLoopSourceCreate(kCFAllocatorDefault, 0, &context);
-                
-                // 往Runloop中添加source
-                CFRunLoopAddSource(CFRunLoopGetCurrent(), sourceRef, kCFRunLoopDefaultMode);
-                
-                // 销毁source
-                CFRelease(sourceRef);
-                
-                // 启动
-                CFRunLoopRunInMode(kCFRunLoopDefaultMode, 1.0e10, false);
-                
-                //    while (weakSelf && !weakSelf.isStopped) {
-                //        // 第3个参数：returnAfterSourceHandled，设置为true，代表执行完source后就会退出当前loop
-                //        CFRunLoopRunInMode(kCFRunLoopDefaultMode, 1.0e10, true);
-                //    }
-                
-                NSLog(@"线程结束");
-               */
+                 // C语言
+                 // 创建上下文（要初始化一下结构体）
+                 CFRunLoopSourceContext context = { 0 };
+                 
+                 // 创建source
+                 CFRunLoopSourceRef sourceRef = CFRunLoopSourceCreate(kCFAllocatorDefault, 0, &context);
+                 
+                 // 往Runloop中添加source
+                 CFRunLoopAddSource(CFRunLoopGetCurrent(), sourceRef, kCFRunLoopDefaultMode);
+                 
+                 // 销毁source
+                 CFRelease(sourceRef);
+                 
+                 // 启动
+                 CFRunLoopRunInMode(kCFRunLoopDefaultMode, 1.0e10, false);
+                 
+                 //    while (weakSelf && !weakSelf.isStopped) {
+                 //        // 第3个参数：returnAfterSourceHandled，设置为true，代表执行完source后就会退出当前loop
+                 //        CFRunLoopRunInMode(kCFRunLoopDefaultMode, 1.0e10, true);
+                 //    }
+                 
+                 NSLog(@"线程结束");
+                 */
             }];
         } else {
             
-            self.innerThread = [[SLThread alloc] initWithTarget:[SLProxy sl_proxyWithTarget:self]
+            self.innerThread = [[SLThread alloc] initWithTarget:[SLProxy proxyWithTarget:self]
                                                        selector:@selector(__addRunloop)
                                                          object:nil];
         }
         
-
+        
         [self.innerThread start];
     }
-
+    
     return self;
 }
 
-- (void)sl_executeTask:(SLPermenantThreadTask)task {
-
+- (void)executeTask:(SLPermenantThreadTask)task {
+    
     if (!self.innerThread || !task) return;
-
+    
     [self performSelector:@selector(__executeTask:)
                  onThread:self.innerThread
                withObject:task
             waitUntilDone:NO];
 }
 
-- (void)sl_stop {
-
+- (void)stop {
+    
     if (!self.innerThread) return;
-
+    
     [self performSelector:@selector(__stop)
                  onThread:self.innerThread
                withObject:nil
@@ -115,8 +115,8 @@
 }
 
 - (void)dealloc {
-//    NSLog(@"%s", __func__);
-    [self sl_stop];
+    //    NSLog(@"%s", __func__);
+    [self stop];
 }
 
 #pragma mark - Private methods
@@ -133,19 +133,19 @@
 
 - (void)__addRunloop {
     
-//    NSLog(@"开启线程");
+    //    NSLog(@"开启线程");
     
     [[NSRunLoop currentRunLoop] addPort:[[NSPort alloc] init]
                                 forMode:NSDefaultRunLoopMode];
     
     while (self && !self.isStopped) {
-//        NSLog(@"self = %@", self);
-//        NSLog(@"stopped = %d", self.isStopped);
+        //        NSLog(@"self = %@", self);
+        //        NSLog(@"stopped = %d", self.isStopped);
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
                                  beforeDate:[NSDate distantFuture]];
     }
     
-//    NSLog(@"结束线程");
+    //    NSLog(@"结束线程");
 }
 
 

@@ -9,7 +9,7 @@
 
 @implementation SLProxy
 
-+ (instancetype)sl_proxyWithTarget:(id)targe {
++ (instancetype)proxyWithTarget:(id)targe {
     SLProxy *proxy = [SLProxy alloc];
     proxy.target = targe;
     return proxy;

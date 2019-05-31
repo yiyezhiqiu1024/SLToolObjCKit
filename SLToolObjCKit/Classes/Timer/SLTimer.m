@@ -20,12 +20,12 @@ static dispatch_semaphore_t semaphonre_;
     });
 }
 
-+ (NSString *)sl_excuteTask:(void(^)(void))task
++ (NSString *)excuteTask:(void(^)(void))task
                    start:(NSTimeInterval)start
                 interval:(NSTimeInterval)interval
                isRepeats:(BOOL)isRepeats
                  isAsync:(BOOL)isAsync {
-
+    
     if (!task || start < 0 || (interval <= 0 && isRepeats)) return nil;
     
     // 队列
@@ -33,7 +33,7 @@ static dispatch_semaphore_t semaphonre_;
     
     // 创建定时器
     dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
-    dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, start * NSEC_PER_SEC), interval * NSEC_PER_SEC, 0);    
+    dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, start * NSEC_PER_SEC), interval * NSEC_PER_SEC, 0);
     
     // 加锁
     dispatch_semaphore_wait(semaphonre_, DISPATCH_TIME_FOREVER);
@@ -51,7 +51,7 @@ static dispatch_semaphore_t semaphonre_;
         task();
         
         if (!isRepeats) { // 不重复的，取消任务
-            [self sl_cancelTask:name];
+            [self cancelTask:name];
         }
     });
     
@@ -61,7 +61,7 @@ static dispatch_semaphore_t semaphonre_;
     return name;
 }
 
-+ (NSString *)sl_excuteTaskWithTarget:(id)target
++ (NSString *)excuteTaskWithTarget:(id)target
                           selector:(SEL)selector
                              start:(NSTimeInterval)start
                           interval:(NSTimeInterval)interval
@@ -70,27 +70,25 @@ static dispatch_semaphore_t semaphonre_;
     
     if (!target || !selector) return nil;
     
-    return [self sl_excuteTask: ^{
-                
-                if ([target respondsToSelector:selector])  {
-                    
-// 消除警告的处理
+    return [self excuteTask: ^{
+        
+        if ([target respondsToSelector:selector])  {
+            
+            // 消除警告的处理
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks" // 警告消息
-                    [target performSelector:selector];
+            [target performSelector:selector];
 #pragma clang diagnostic pop
-                    
-                }
-            }
+            
+        }
+    }
                       start:start
                    interval:interval
                   isRepeats:isRepeats
                     isAsync:isAsync];
-    
-    
 }
 
-+ (void)sl_cancelTask:(NSString *)name {
++ (void)cancelTask:(NSString *)name {
     if (0 == name.length) return;
     
     // 加锁

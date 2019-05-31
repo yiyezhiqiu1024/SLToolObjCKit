@@ -21,14 +21,14 @@ typedef NS_ENUM(NSInteger, SLRequestType) {
 
 @interface SLNetworkTool : AFHTTPSessionManager
 
-+ (__kindof SLNetworkTool*)sl_sharedNetworkTool;
++ (instancetype)sharedNetworkTool;
 
 /**
  使用证书相关处理
  @param cerName 导入证书名称
  @param isByPassSLL 设置是否绕过SLL
  */
-+ (void)sl_customSecurityPolicyWithCerName:(NSString *)cerName isByPassSLL:(BOOL)isByPassSLL;
++ (void)customSecurityPolicyWithCerName:(NSString *)cerName isByPassSLL:(BOOL)isByPassSLL;
 /**
  请求方式
  
@@ -37,10 +37,10 @@ typedef NS_ENUM(NSInteger, SLRequestType) {
  @param parameters 参数
  @param finished 请求完成的回调
  */
-- (void)sl_requestMethodType:(SLRequestType)methodType
-                   urlString:(NSString *)urlString
-                  parameters:(NSDictionary *)parameters
-                    finished:(void (^)(NSDictionary *result, NSError *error))finished;
+- (void)requestMethodType:(SLRequestType)methodType
+                urlString:(NSString *)urlString
+               parameters:(NSDictionary *)parameters
+                 finished:(void (^)(NSDictionary *result, NSError *error))finished;
 
 /**
  上传文件
@@ -49,9 +49,9 @@ typedef NS_ENUM(NSInteger, SLRequestType) {
  @param parameters 参数
  @param finished 请求完成的回调
  */
-- (void)sl_upLoadFileWithUrlString:(NSString *)urlString
-                        parameters:(NSDictionary *)parameters
-                          finished:(void (^)(id<AFMultipartFormData> formData, NSDictionary *result, NSError *error))finished;
+- (void)upLoadFileWithUrlString:(NSString *)urlString
+                     parameters:(NSDictionary *)parameters
+                       finished:(void (^)(id<AFMultipartFormData> formData, NSDictionary *result, NSError *error))finished;
 
 
 /**
@@ -62,10 +62,10 @@ typedef NS_ENUM(NSInteger, SLRequestType) {
  @param parameters 参数
  @param finished 请求完毕的回调
  */
-- (void)sl_uploadImage:(UIImage *)image
-             urlString:(NSString *)urlString
-            parameters:(NSDictionary *)parameters
-              finished:(void (^)(NSDictionary *result))finished;
+- (void)uploadImage:(UIImage *)image
+          urlString:(NSString *)urlString
+         parameters:(NSDictionary *)parameters
+           finished:(void (^)(NSDictionary *result))finished;
 
 
 /**
@@ -76,9 +76,9 @@ typedef NS_ENUM(NSInteger, SLRequestType) {
  @param parameters 参数
  @param finished 请求完毕的回调
  */
-- (void)sl_uploadImages:(NSArray<UIImage *> *)imagesArray
-              urlString:(NSString *)urlString
-             parameters:(NSDictionary *)parameters
-               finished:(void (^)(NSDictionary *result))finished;
+- (void)uploadImages:(NSArray<UIImage *> *)imagesArray
+           urlString:(NSString *)urlString
+          parameters:(NSDictionary *)parameters
+            finished:(void (^)(NSDictionary *result))finished;
 
 @end

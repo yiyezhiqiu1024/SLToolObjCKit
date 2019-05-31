@@ -43,7 +43,7 @@
 //        NSLog(@"开始定时器 %@", [NSThread currentThread]);
 //    } start:0 interval:0 repeats:NO async:YES];
     
-    self.name = [SLTimer sl_excuteTaskWithTarget:self
+    self.name = [SLTimer excuteTaskWithTarget:self
                                         selector:@selector(doTask)
                                            start:2
                                         interval:1
@@ -54,7 +54,7 @@
 - (IBAction)stop {
     
     if (0 == self.name.length) return;
-    [SLTimer sl_cancelTask:self.name];
+    [SLTimer cancelTask:self.name];
     NSLog(@"%s", __func__);
 }
 
@@ -65,7 +65,7 @@
 - (void)setName:(NSString *)name {
     if (_name == name) return;
     
-    [SLTimer sl_cancelTask:_name];
+    [SLTimer cancelTask:_name];
     _name = name;
     
 }

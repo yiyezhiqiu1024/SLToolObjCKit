@@ -14,7 +14,7 @@
 
 static SLNetworkTool *instance_;
 
-+ (__kindof SLNetworkTool*)sl_sharedNetworkTool {
++ (instancetype)sharedNetworkTool {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance_ = [[self alloc] initWithBaseURL:nil sessionConfiguration:NSURLSessionConfiguration.defaultSessionConfiguration];
@@ -35,7 +35,7 @@ static SLNetworkTool *instance_;
     return instance_;
 }
 
-+ (void)sl_customSecurityPolicyWithCerName:(NSString *)cerName isByPassSLL:(BOOL)isByPassSLL {
++ (void)customSecurityPolicyWithCerName:(NSString *)cerName isByPassSLL:(BOOL)isByPassSLL {
     
     // 先导入证书 证书由服务端生成，具体由服务端人员操作
     NSString *cerPath = [[NSBundle mainBundle] pathForResource:cerName ofType:@"cer"];
@@ -83,15 +83,15 @@ static SLNetworkTool *instance_;
     securityPolicy.pinnedCertificates = [[NSSet alloc] initWithObjects:cerData, nil];
     
     if (instance_ == nil) {
-        [self sl_sharedNetworkTool];
+        [self sharedNetworkTool];
     }
     [instance_ setSecurityPolicy:securityPolicy];
 }
 
-- (void)sl_requestMethodType:(SLRequestType)methodType
-                   urlString:(NSString *)urlString
-                  parameters:(NSDictionary *)parameters
-                    finished:(void (^)(NSDictionary *result, NSError *error))finished {
+- (void)requestMethodType:(SLRequestType)methodType
+                urlString:(NSString *)urlString
+               parameters:(NSDictionary *)parameters
+                 finished:(void (^)(NSDictionary *result, NSError *error))finished {
     // 1.检查网络
     if (![self checkNetWorking]) return;
     
@@ -169,9 +169,9 @@ static SLNetworkTool *instance_;
     }
 }
 
-- (void)sl_upLoadFileWithUrlString:(NSString *)urlString
-                        parameters:(NSDictionary *)parameters
-                          finished:(void (^)(id<AFMultipartFormData> formData, NSDictionary *result, NSError *error))finished {
+- (void)upLoadFileWithUrlString:(NSString *)urlString
+                     parameters:(NSDictionary *)parameters
+                       finished:(void (^)(id<AFMultipartFormData> formData, NSDictionary *result, NSError *error))finished {
     // 1.检查网络
     if (![self checkNetWorking]) return;
     
@@ -206,10 +206,10 @@ constructingBodyWithBlock:constructingBodyCallBack
        failure:failureCallBack];
 }
 
-- (void)sl_uploadImage:(UIImage *)image
-             urlString:(NSString *)urlString
-            parameters:(NSDictionary *)parameters
-              finished:(void (^)(NSDictionary *result))finished {
+- (void)uploadImage:(UIImage *)image
+          urlString:(NSString *)urlString
+         parameters:(NSDictionary *)parameters
+           finished:(void (^)(NSDictionary *result))finished {
     
     if (image == nil) {
         NSException *excp = [NSException exceptionWithName:@"pathError" reason:@"调用此方法必须提供一个图片参数" userInfo:nil];
@@ -225,7 +225,7 @@ constructingBodyWithBlock:constructingBodyCallBack
     }];
     
     self.requestSerializer.timeoutInterval = 20;
-    [self sl_upLoadFileWithUrlString:urlString parameters:baseParameters finished:^(id<AFMultipartFormData> formData, NSDictionary *result, NSError *error) {
+    [self upLoadFileWithUrlString:urlString parameters:baseParameters finished:^(id<AFMultipartFormData> formData, NSDictionary *result, NSError *error) {
         
         if (error != nil)
         {
@@ -263,17 +263,17 @@ constructingBodyWithBlock:constructingBodyCallBack
     }];
 }
 
-- (void)sl_uploadImages:(NSArray<UIImage *> *)imagesArray
-              urlString:(NSString *)urlString
-             parameters:(NSDictionary *)parameters
-               finished:(void (^)(NSDictionary *result))finished {
+- (void)uploadImages:(NSArray<UIImage *> *)imagesArray
+           urlString:(NSString *)urlString
+          parameters:(NSDictionary *)parameters
+            finished:(void (^)(NSDictionary *result))finished {
     if (imagesArray.count == 0) {
         NSException *excp = [NSException exceptionWithName:@"pathError" reason:@"调用此方法必须提供一个装载图片的数组参数" userInfo:nil];
         [excp raise];
         return;
     }
     
-    [self sl_upLoadFileWithUrlString:urlString parameters:parameters finished:^(id<AFMultipartFormData> formData, NSDictionary *result, NSError *error) {
+    [self upLoadFileWithUrlString:urlString parameters:parameters finished:^(id<AFMultipartFormData> formData, NSDictionary *result, NSError *error) {
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"yyyyMMddHHmmss";

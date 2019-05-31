@@ -10,11 +10,27 @@
 
 @interface SLAlertControllerTool : NSObject
 
-+ (void)sl_alertTitle:(NSString *)titile type:(UIAlertControllerStyle)alertType message:(NSString *)message didCancelTask:(void(^)(void))cancelTask didDoneTask:(void(^)(void))doneTask;
++ (void)alertTitle:(NSString *)titile
+              type:(UIAlertControllerStyle)alertType
+           message:(NSString *)message
+     didCancelTask:(void(^)(void))cancelTask
+       didDoneTask:(void(^)(void))doneTask;
 
-+ (void)sl_alertTitle:(NSString *)titile type:(UIAlertControllerStyle)alertType message:(NSString *)message didDoneTask:(void(^)(void))doneTask;
++ (void)alertTitle:(NSString *)titile
+              type:(UIAlertControllerStyle)alertType
+           message:(NSString *)message
+       didDoneTask:(void(^)(void))doneTask;
 
-+ (void)sl_alertTitle:(NSString *)titile type:(UIAlertControllerStyle)alertType message:(NSString *)message controller:(UIViewController *)controller didDoneTask:(void(^)(void))doneTask;
++ (void)alertTitle:(NSString *)titile
+              type:(UIAlertControllerStyle)alertType
+           message:(NSString *)message
+        controller:(UIViewController *)controller
+       didDoneTask:(void(^)(void))doneTask;
 
-+ (void)sl_alertTitle:(NSString *)titile type:(UIAlertControllerStyle)alertType message:(NSString *)message controller:(UIViewController *)controller didCancelTask:(void(^)(void))cancelTask didDoneTask:(void(^)(void))doneTask;
++ (void)alertTitle:(NSString *)titile
+              type:(UIAlertControllerStyle)alertType
+           message:(NSString *)message
+        controller:(UIViewController *)controller
+     didCancelTask:(void(^)(void))cancelTask
+       didDoneTask:(void(^)(void))doneTask;
 @end

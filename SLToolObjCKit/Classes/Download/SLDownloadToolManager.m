@@ -17,13 +17,13 @@
 
 @implementation SLDownloadToolManager
 
-static SLDownloadToolManager *_shareInstance;
+static SLDownloadToolManager *instance_;
 
 + (instancetype)shareInstance {
-    if (!_shareInstance) {
-        _shareInstance = [[self alloc] init];
+    if (!instance_) {
+        instance_ = [[self alloc] init];
     }
-    return _shareInstance;
+    return instance_;
 }
 
 - (void)downloadWithURL:(NSURL *)URL
@@ -88,21 +88,21 @@ static SLDownloadToolManager *_shareInstance;
 
 
 + (instancetype)allocWithZone:(struct _NSZone *)zone {
-    if (!_shareInstance) {
+    if (!instance_) {
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
-            _shareInstance = [super allocWithZone:zone];
+            instance_ = [super allocWithZone:zone];
         });
     }
-    return _shareInstance;
+    return instance_;
 }
 
 - (id)copyWithZone:(NSZone *)zone {
-    return _shareInstance;
+    return instance_;
 }
 
 - (id)mutableCopyWithZone:(NSZone *)zone {
-    return _shareInstance;
+    return instance_;
 }
 
 

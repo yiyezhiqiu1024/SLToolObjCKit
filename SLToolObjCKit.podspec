@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'SLToolObjCKit'
-    s.version          = '0.2.0'
+    s.version          = '1.0.0'
     s.summary          = '封装的工具类库'
     
     # This description is used to generate tags and improve search results.
