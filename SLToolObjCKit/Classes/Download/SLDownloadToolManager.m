@@ -19,7 +19,7 @@
 
 static SLDownloadToolManager *instance_;
 
-+ (instancetype)shareInstance {
++ (instancetype)sharedInstance {
     if (!instance_) {
         instance_ = [[self alloc] init];
     }
@@ -64,7 +64,7 @@ static SLDownloadToolManager *instance_;
     [downloadTool cancelDownload];
 }
 
-- (void)cancelAndClearCachesWithURL:(NSURL *)URL {
+- (void)cancelAndCleanCachesWithURL:(NSURL *)URL {
     NSString *URLMD5 = [URL.absoluteString sl_md5];
     SLDownloadTool *downloadTool = self.downloadInfoDict[URLMD5];
     [downloadTool cancelDownloadAndCleanCaches];
@@ -82,7 +82,7 @@ static SLDownloadToolManager *instance_;
     [self.downloadInfoDict.allValues performSelector:@selector(cancelDownload) withObject:nil];
 }
 
-- (void)cancelAndClearCachesAll {
+- (void)cancelAndCleanCachesAll {
     [self.downloadInfoDict.allValues performSelector:@selector(cancelDownloadAndCleanCaches) withObject:nil];
 }
 

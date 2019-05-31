@@ -38,28 +38,29 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)downloadWithURL:(NSURL *)URL;
 
 /**
- 继续任务
+ 继续下载
  */
 - (void)resumeDownload;
 
 /**
- 暂停任务
+ 暂停下载
  */
 - (void)pauseDownload;
 
 /**
- 取消任务
+ 取消下载
  */
 - (void)cancelDownload;
 
 /**
- 取消任务，并清理资源
+ 取消下载，并清理资源
  */
 - (void)cancelDownloadAndCleanCaches;
 
 /** 下载状态 */
 @property (assign, nonatomic, readonly) SLDownloadState state;
 
+/** 下载进度 */
 @property (nonatomic, assign, readonly) NSInteger progress;
 
 @end

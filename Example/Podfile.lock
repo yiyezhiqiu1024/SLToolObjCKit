@@ -15,29 +15,30 @@ PODS:
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
   - SLCategoryObjCKit/String (0.4.1)
-  - SLToolObjCKit (1.0.0):
-    - SLToolObjCKit/Alert (= 1.0.0)
-    - SLToolObjCKit/Download (= 1.0.0)
-    - SLToolObjCKit/File (= 1.0.0)
-    - SLToolObjCKit/Network (= 1.0.0)
-    - SLToolObjCKit/ProgressHUD (= 1.0.0)
-    - SLToolObjCKit/Thread (= 1.0.0)
-    - SLToolObjCKit/Timer (= 1.0.0)
-    - SLToolObjCKit/UpdateApp (= 1.0.0)
-    - SLToolObjCKit/UserDefaults (= 1.0.0)
-  - SLToolObjCKit/Alert (1.0.0)
-  - SLToolObjCKit/Download (1.0.0)
-  - SLToolObjCKit/File (1.0.0)
-  - SLToolObjCKit/Network (1.0.0):
+  - SLToolObjCKit (1.0.1):
+    - SLToolObjCKit/Alert (= 1.0.1)
+    - SLToolObjCKit/Download (= 1.0.1)
+    - SLToolObjCKit/File (= 1.0.1)
+    - SLToolObjCKit/Network (= 1.0.1)
+    - SLToolObjCKit/ProgressHUD (= 1.0.1)
+    - SLToolObjCKit/Thread (= 1.0.1)
+    - SLToolObjCKit/Timer (= 1.0.1)
+    - SLToolObjCKit/UpdateApp (= 1.0.1)
+    - SLToolObjCKit/UserDefaults (= 1.0.1)
+  - SLToolObjCKit/Alert (1.0.1)
+  - SLToolObjCKit/Download (1.0.1):
+    - SLCategoryObjCKit/String
+  - SLToolObjCKit/File (1.0.1)
+  - SLToolObjCKit/Network (1.0.1):
     - AFNetworking
     - SLCategoryObjCKit/String
     - SVProgressHUD
-  - SLToolObjCKit/ProgressHUD (1.0.0):
+  - SLToolObjCKit/ProgressHUD (1.0.1):
     - SVProgressHUD
-  - SLToolObjCKit/Thread (1.0.0)
-  - SLToolObjCKit/Timer (1.0.0)
-  - SLToolObjCKit/UpdateApp (1.0.0)
-  - SLToolObjCKit/UserDefaults (1.0.0)
+  - SLToolObjCKit/Thread (1.0.1)
+  - SLToolObjCKit/Timer (1.0.1)
+  - SLToolObjCKit/UpdateApp (1.0.1)
+  - SLToolObjCKit/UserDefaults (1.0.1)
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
@@ -56,7 +57,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   SLCategoryObjCKit: 2db0faf7ecb075b78511b69421141f0550686c68
-  SLToolObjCKit: 95debe6e25bd2bcc59be67cc4f34f97bf3952ee8
+  SLToolObjCKit: b2049fb593ee2772ac41215a3a7908c99af251f4
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
 PODFILE CHECKSUM: d36088fe82ade4eadb79ff89a5097731c4b2bb8f
