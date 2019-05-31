@@ -14,30 +14,30 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
-  - SLCategoryObjCKit/String (0.2.0)
-  - SLToolObjCKit (0.2.0):
-    - SLToolObjCKit/Alert (= 0.2.0)
-    - SLToolObjCKit/Download (= 0.2.0)
-    - SLToolObjCKit/File (= 0.2.0)
-    - SLToolObjCKit/Network (= 0.2.0)
-    - SLToolObjCKit/ProgressHUD (= 0.2.0)
-    - SLToolObjCKit/Thread (= 0.2.0)
-    - SLToolObjCKit/Timer (= 0.2.0)
-    - SLToolObjCKit/UpdateApp (= 0.2.0)
-    - SLToolObjCKit/UserDefaults (= 0.2.0)
-  - SLToolObjCKit/Alert (0.2.0)
-  - SLToolObjCKit/Download (0.2.0)
-  - SLToolObjCKit/File (0.2.0)
-  - SLToolObjCKit/Network (0.2.0):
+  - SLCategoryObjCKit/String (0.4.1)
+  - SLToolObjCKit (1.0.0):
+    - SLToolObjCKit/Alert (= 1.0.0)
+    - SLToolObjCKit/Download (= 1.0.0)
+    - SLToolObjCKit/File (= 1.0.0)
+    - SLToolObjCKit/Network (= 1.0.0)
+    - SLToolObjCKit/ProgressHUD (= 1.0.0)
+    - SLToolObjCKit/Thread (= 1.0.0)
+    - SLToolObjCKit/Timer (= 1.0.0)
+    - SLToolObjCKit/UpdateApp (= 1.0.0)
+    - SLToolObjCKit/UserDefaults (= 1.0.0)
+  - SLToolObjCKit/Alert (1.0.0)
+  - SLToolObjCKit/Download (1.0.0)
+  - SLToolObjCKit/File (1.0.0)
+  - SLToolObjCKit/Network (1.0.0):
     - AFNetworking
     - SLCategoryObjCKit/String
     - SVProgressHUD
-  - SLToolObjCKit/ProgressHUD (0.2.0):
+  - SLToolObjCKit/ProgressHUD (1.0.0):
     - SVProgressHUD
-  - SLToolObjCKit/Thread (0.2.0)
-  - SLToolObjCKit/Timer (0.2.0)
-  - SLToolObjCKit/UpdateApp (0.2.0)
-  - SLToolObjCKit/UserDefaults (0.2.0)
+  - SLToolObjCKit/Thread (1.0.0)
+  - SLToolObjCKit/Timer (1.0.0)
+  - SLToolObjCKit/UpdateApp (1.0.0)
+  - SLToolObjCKit/UserDefaults (1.0.0)
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
@@ -55,8 +55,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  SLCategoryObjCKit: 46eed3de58cc886661eb99498fec377ccd932559
-  SLToolObjCKit: b8fd3c61c48f2ac5edeb408cd081e8dec5a5371a
+  SLCategoryObjCKit: 2db0faf7ecb075b78511b69421141f0550686c68
+  SLToolObjCKit: 95debe6e25bd2bcc59be67cc4f34f97bf3952ee8
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
 PODFILE CHECKSUM: d36088fe82ade4eadb79ff89a5097731c4b2bb8f

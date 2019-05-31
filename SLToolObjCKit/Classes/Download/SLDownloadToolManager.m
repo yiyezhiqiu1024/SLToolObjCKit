@@ -6,8 +6,8 @@
 //
 
 #import "SLDownloadToolManager.h"
-#import "NSString+SLMD5.h"
-#import "SLDownloadTool.h"
+
+#import <SLCategoryObjCKit/NSString+SLExtension.h>
 
 @interface SLDownloadToolManager () <NSCopying, NSMutableCopying>
 

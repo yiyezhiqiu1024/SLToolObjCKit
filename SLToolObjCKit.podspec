@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'SLToolObjCKit'
-    s.version          = '1.0.0'
+    s.version          = '1.0.1'
     s.summary          = '封装的工具类库'
     
     # This description is used to generate tags and improve search results.
@@ -103,6 +103,7 @@ Pod::Spec.new do |s|
         
         s.subspec 'Download' do |download|
             download.source_files = 'SLToolObjCKit/Classes/Download/*.{h,m}'
+            download.dependency 'SLCategoryObjCKit/String'
         end
                 
     end
