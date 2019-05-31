@@ -25,8 +25,18 @@
 
 #pragma mark - Action
 - (IBAction)startOrResume {
-    NSURL *url = [NSURL URLWithString:@"http://free2.macx.cn:8281/tools/photo/SnapNDragPro418.dmg"];
-    [self.downloadTool sl_downloadWithURL:url];
+    NSURL *URL = [NSURL URLWithString:@"http://free2.macx.cn:8281/tools/photo/SnapNDragPro418.dmg"];
+//    [self.downloadTool sl_downloadWithURL:URL];
+    
+    [self.downloadTool sl_downloadWithURL:URL info:^(NSInteger totalSize) {
+        NSLog(@"下载信息--%ld", (long)totalSize);
+    } progress:^(float progress) {
+        NSLog(@"下载进度--%f", progress);
+    } success:^(NSString * _Nonnull filePath) {
+         NSLog(@"下载成功--路径:%@", filePath);
+    } failure:^{
+        NSLog(@"下载失败了");
+    }];
 }
 
 - (IBAction)pause {

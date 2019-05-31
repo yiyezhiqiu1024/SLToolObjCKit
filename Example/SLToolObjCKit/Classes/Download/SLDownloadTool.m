@@ -29,34 +29,56 @@
 /** 当前下载任务 */
 @property (nonatomic, weak) NSURLSessionDataTask *dataTask;
 
+@property (nonatomic, copy) DownloadInfoBlock infoBlock;
+@property (nonatomic, copy) DownloadStateBlock stateBlock;
+@property (nonatomic, copy) DownloadProgressBlock progressBlock;
+@property (nonatomic, copy) DownloadSuccessBlock successBlock;
+@property (nonatomic, copy) DownloadFailureBlock failureBlock;
+
 @end
 
 @implementation SLDownloadTool
 
 #pragma mark - Public interface methond
-- (void)sl_downloadWithURL:(NSURL *)url {
+
+- (void)sl_downloadWithURL:(NSURL *)URL
+                      info:(DownloadInfoBlock)info
+                  progress:(DownloadProgressBlock)progress
+                   success:(DownloadSuccessBlock)success
+                   failure:(DownloadFailureBlock)failure {
+    
+    self.infoBlock = info;
+    self.progressBlock = progress;
+    self.successBlock = success;
+    self.failureBlock = failure;
+    
+    [self sl_downloadWithURL:URL];
+}
+
+- (void)sl_downloadWithURL:(NSURL *)URL {
     
     // 内部实现
     // 1. 真正的从头开始下载
     // 2. 如果任务存在了, 继续下载
     
     // 0.当前任务，肯定存在
-    if ([url isEqual:self.dataTask.originalRequest.URL]) {
+    if ([URL isEqual:self.dataTask.originalRequest.URL]) {
         // 判断当前状态，如果是暂停状态
-        // 继续
-        [self resumeTask];
-        return;
+        if (self.state == SLDownloadStatePause) {
+            // 继续
+            [self resumeTask];
+            return;
+        }
     }
     
+    [self sl_cancelTask];
     // 1.文件存在
     // 1.1.文件名
-    NSString *fileName = url.lastPathComponent;
+    NSString *fileName = URL.lastPathComponent;
     self.downloadingPath = [kTempPath stringByAppendingPathComponent:fileName];
     self.downloadedPath = [kCachesPath stringByAppendingPathComponent:fileName];
 
     if ([SLFileTool sl_fileExist:self.downloadedPath]) {
-        // UNDO: 告诉外界，已经下载完成
-        NSLog(@"已经下载完成");
         self.state = SLDownloadStateSuccess;
         return;
     }
@@ -65,14 +87,14 @@
     // 2.1.不存在
     if (![SLFileTool sl_fileExist:self.downloadingPath]) {
         // 从0字节开始请求资源
-        [self downloadWithURL:url offset:0];
+        [self downloadWithURL:URL offset:0];
         return;
     }
     
     // 2.2.存在：以当前的存在文件大小作为开始字节，请求资源
     // 获取本地文件大小
     _tmpSize = [SLFileTool sl_fileSize:self.downloadingPath];
-    [self downloadWithURL:url offset:_tmpSize];
+    [self downloadWithURL:URL offset:_tmpSize];
 }
 
 - (void)sl_pauseTask {
@@ -116,13 +138,17 @@ didReceiveResponse:(NSHTTPURLResponse *)response
         _totalSize = [[contentRangeStr componentsSeparatedByString:@"/"].lastObject integerValue];
     }
     
+    // 传递给外界: 总打下 & 本地存储的文件路径
+    if (self.infoBlock != nil) {
+        self.infoBlock(_totalSize);
+    }
+    
     // 比对 本地大小 和 总大小
     if (_tmpSize == _totalSize) {
         // 1.取消本次请求
         completionHandler(NSURLSessionResponseCancel);
         // 2.移动到下载完成文件夹
         [SLFileTool sl_moveFile:self.downloadingPath toPath:self.downloadedPath];
-        NSLog(@"移动文件到下载完成");
         // 3.修改状态
         self.state = SLDownloadStateSuccess;
         return;
@@ -132,10 +158,8 @@ didReceiveResponse:(NSHTTPURLResponse *)response
         // 1.取消本次请求
         completionHandler(NSURLSessionResponseCancel);
         // 2.删除临时缓存
-        NSLog(@"删除临时缓存");
         [SLFileTool sl_removeFile:self.downloadingPath];
         // 3.从0开始下载
-        NSLog(@"重新开始下载");
         [self sl_downloadWithURL:response.URL];
         return;
     }
@@ -159,8 +183,10 @@ didReceiveResponse:(NSHTTPURLResponse *)response
           dataTask:(NSURLSessionDataTask *)dataTask
     didReceiveData:(NSData *)data {
 
+    // 下载进度
+    _tmpSize += data.length;
+    self.progress = 1.0 * _tmpSize / _totalSize;
     [self.outputStream write:data.bytes maxLength:data.length];
-     NSLog(@"在接收后续数据");
 }
 
 /**
@@ -173,13 +199,11 @@ didReceiveResponse:(NSHTTPURLResponse *)response
 - (void)URLSession:(NSURLSession *)session
               task:(NSURLSessionTask *)task
 didCompleteWithError:(NSError *)error {
-    NSLog(@"请求完成");
 
     [self.outputStream close];
     
     if (error) {
-        NSLog(@"有问题--【%zd】--【%@】", error.code, error.localizedDescription);
-        self.state = (-999 == error.code) ? SLDownloadStatePause : SLDownloadStateFailed;
+        self.state = (-999 == error.code) ? SLDownloadStatePause : SLDownloadStateFailure;
         return;
     }
     
@@ -189,7 +213,6 @@ didCompleteWithError:(NSError *)error {
     // 如果等于 => 验证, 是否文件完整(file md5 )
     [SLFileTool sl_moveFile:self.downloadingPath toPath:self.downloadedPath];
     self.state = SLDownloadStateSuccess;
-    
 }
 
 #pragma mark - Private methond
@@ -228,6 +251,25 @@ didCompleteWithError:(NSError *)error {
     if (_state == state) return;
     
     _state = state;
+    
+    if (self.stateBlock) {
+        self.stateBlock(_state);
+    }
+    
+    if (_state == SLDownloadStateSuccess && self.successBlock) {
+        self.successBlock(self.downloadedPath);
+    }
+    
+    if (_state == SLDownloadStateFailure && self.failureBlock) {
+        self.failureBlock();
+    }
+}
+
+- (void)setProgress:(NSInteger)progress {
+    _progress = progress;
+    if (self.progressBlock) {
+        self.progressBlock(_progress);
+    }
 }
 
 #pragma mark - Getter
@@ -236,7 +278,6 @@ didCompleteWithError:(NSError *)error {
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
         _session = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:[NSOperationQueue mainQueue]];
     }
-    
     return _session;
 }
 

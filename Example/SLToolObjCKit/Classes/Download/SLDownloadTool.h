@@ -12,20 +12,31 @@ typedef NS_ENUM(NSUInteger, SLDownloadState) {
     SLDownloadStatePause,
     SLDownloadStateDownloading,
     SLDownloadStateSuccess,
-    SLDownloadStateFailed,
-
+    SLDownloadStateFailure,
 };
+
+typedef void(^DownloadInfoBlock)(NSInteger totalSize);
+typedef void(^DownloadProgressBlock)(float progress);
+typedef void(^DownloadSuccessBlock)(NSString * _Nonnull filePath);
+typedef void(^DownloadFailureBlock)(void);
+typedef void(^DownloadStateBlock)(SLDownloadState state);
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SLDownloadTool : NSObject
+
+- (void)sl_downloadWithURL:(NSURL *)URL
+   info:(DownloadInfoBlock)info
+           progress:(DownloadProgressBlock)progress
+            success:(DownloadSuccessBlock)success
+             failure:(DownloadFailureBlock)failure;
 
 /**
  下载网络资源
 
  @param url 资源路径
  */
-- (void)sl_downloadWithURL:(NSURL *)url;
+- (void)sl_downloadWithURL:(NSURL *)URL;
 
 /**
  暂停任务
@@ -43,7 +54,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)sl_cancelTaskAndCleanCaches;
 
 /** 下载状态 */
-@property (assign, nonatomic) SLDownloadState state;
+@property (assign, nonatomic, readonly) SLDownloadState state;
+
+@property (nonatomic, assign, readonly) NSInteger progress;
 
 @end
 
