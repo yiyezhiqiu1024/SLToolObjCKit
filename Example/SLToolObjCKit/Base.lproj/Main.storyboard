@@ -223,24 +223,22 @@
                                         <rect key="frame" x="166" y="116" width="46" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="播放"/>
-                                        <connections>
-                                            <action selector="play:" destination="Dhd-Y9-rqU" eventType="touchUpInside" id="geE-xy-OlY"/>
-                                        </connections>
+                                        <state key="selected" title="继续"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="15L-59-mWI">
                                         <rect key="frame" x="166" y="184" width="46" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="暂停"/>
                                         <connections>
-                                            <action selector="pause:" destination="Dhd-Y9-rqU" eventType="touchUpInside" id="h6E-e6-efG"/>
+                                            <action selector="pause:" destination="Dhd-Y9-rqU" eventType="touchUpInside" id="wcL-12-BvA"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcA-VV-ny7">
                                         <rect key="frame" x="166" y="265" width="46" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="继续"/>
+                                        <state key="normal" title="停止"/>
                                         <connections>
-                                            <action selector="resume:" destination="Dhd-Y9-rqU" eventType="touchUpInside" id="9l3-eY-wsc"/>
+                                            <action selector="stop:" destination="Dhd-Y9-rqU" eventType="touchUpInside" id="bgj-g2-dRU"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ssv-Nj-bOi">
@@ -313,9 +311,13 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="loadPV" destination="DrM-zw-gBX" id="mFr-jA-mLQ"/>
-                        <outlet property="playTimeLabel" destination="fJ8-H7-ghS" id="tUq-MJ-R0k"/>
-                        <outlet property="totalTimeLabel" destination="NJu-pi-K1Y" id="7Ys-zr-0QR"/>
+                        <outlet property="currentTimeLabel" destination="fJ8-H7-ghS" id="tUq-MJ-R0k"/>
+                        <outlet property="durationLabel" destination="NJu-pi-K1Y" id="7Ys-zr-0QR"/>
+                        <outlet property="loadProgressView" destination="DrM-zw-gBX" id="mFr-jA-mLQ"/>
+                        <outlet property="mutedBtn" destination="gcC-3T-leN" id="wfg-ba-yuP"/>
+                        <outlet property="playOrResumeBtn" destination="Owr-wj-yW7" id="Ag9-rx-dvz"/>
+                        <outlet property="playSlider" destination="Q6U-WY-1Hn" id="4pf-a3-Hj8"/>
+                        <outlet property="volumeSlider" destination="w5h-tD-0JP" id="wvm-IF-mMw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WoT-NM-Fef" userLabel="First Responder" sceneMemberID="firstResponder"/>
