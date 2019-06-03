@@ -224,6 +224,9 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="播放"/>
                                         <state key="selected" title="继续"/>
+                                        <connections>
+                                            <action selector="play:" destination="Dhd-Y9-rqU" eventType="touchUpInside" id="eRb-YQ-o6N"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="15L-59-mWI">
                                         <rect key="frame" x="166" y="184" width="46" height="30"/>

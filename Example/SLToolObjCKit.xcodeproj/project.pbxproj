@@ -32,6 +32,10 @@
 		AEB9C4AB221E79B200EFFA76 /* release.cer in Resources */ = {isa = PBXBuildFile; fileRef = AEB9C4A9221E79B200EFFA76 /* release.cer */; };
 		AEBAA35D229E85DF00C4C7B2 /* SLThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEBAA35C229E85DF00C4C7B2 /* SLThreadViewController.m */; };
 		AEBAA360229E873C00C4C7B2 /* SLTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEBAA35F229E873C00C4C7B2 /* SLTimerViewController.m */; };
+		AECE5FD122A4B39F00980D92 /* NSURL+SLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AECE5FD022A4B39F00980D92 /* NSURL+SLExtension.m */; };
+		AECE5FD422A4B53700980D92 /* SLResourceLoaderDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AECE5FD322A4B53700980D92 /* SLResourceLoaderDelegate.m */; };
+		AECE5FD722A4BDAB00980D92 /* SLPlayerAudioFile.m in Sources */ = {isa = PBXBuildFile; fileRef = AECE5FD622A4BDAB00980D92 /* SLPlayerAudioFile.m */; };
+		AECE5FDA22A4C7BB00980D92 /* SLAudioDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = AECE5FD922A4C7BB00980D92 /* SLAudioDownloader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +91,14 @@
 		AEBAA35C229E85DF00C4C7B2 /* SLThreadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLThreadViewController.m; sourceTree = "<group>"; };
 		AEBAA35E229E873C00C4C7B2 /* SLTimerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLTimerViewController.h; sourceTree = "<group>"; };
 		AEBAA35F229E873C00C4C7B2 /* SLTimerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLTimerViewController.m; sourceTree = "<group>"; };
+		AECE5FCF22A4B39F00980D92 /* NSURL+SLExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURL+SLExtension.h"; sourceTree = "<group>"; };
+		AECE5FD022A4B39F00980D92 /* NSURL+SLExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURL+SLExtension.m"; sourceTree = "<group>"; };
+		AECE5FD222A4B53700980D92 /* SLResourceLoaderDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLResourceLoaderDelegate.h; sourceTree = "<group>"; };
+		AECE5FD322A4B53700980D92 /* SLResourceLoaderDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLResourceLoaderDelegate.m; sourceTree = "<group>"; };
+		AECE5FD522A4BDAB00980D92 /* SLPlayerAudioFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLPlayerAudioFile.h; sourceTree = "<group>"; };
+		AECE5FD622A4BDAB00980D92 /* SLPlayerAudioFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLPlayerAudioFile.m; sourceTree = "<group>"; };
+		AECE5FD822A4C7BB00980D92 /* SLAudioDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLAudioDownloader.h; sourceTree = "<group>"; };
+		AECE5FD922A4C7BB00980D92 /* SLAudioDownloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLAudioDownloader.m; sourceTree = "<group>"; };
 		AF8552D07E3060BA693E2BE2 /* Pods-SLToolObjCKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLToolObjCKit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SLToolObjCKit_Tests/Pods-SLToolObjCKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -222,6 +234,14 @@
 			children = (
 				AE4EFBC522A1114A0065C5B6 /* SLAudioPlayer.h */,
 				AE4EFBC622A1114A0065C5B6 /* SLAudioPlayer.m */,
+				AECE5FCF22A4B39F00980D92 /* NSURL+SLExtension.h */,
+				AECE5FD022A4B39F00980D92 /* NSURL+SLExtension.m */,
+				AECE5FD222A4B53700980D92 /* SLResourceLoaderDelegate.h */,
+				AECE5FD322A4B53700980D92 /* SLResourceLoaderDelegate.m */,
+				AECE5FD522A4BDAB00980D92 /* SLPlayerAudioFile.h */,
+				AECE5FD622A4BDAB00980D92 /* SLPlayerAudioFile.m */,
+				AECE5FD822A4C7BB00980D92 /* SLAudioDownloader.h */,
+				AECE5FD922A4C7BB00980D92 /* SLAudioDownloader.m */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -448,11 +468,15 @@
 			files = (
 				6003F59E195388D20070C39A /* SLAppDelegate.m in Sources */,
 				AEBAA35D229E85DF00C4C7B2 /* SLThreadViewController.m in Sources */,
+				AECE5FDA22A4C7BB00980D92 /* SLAudioDownloader.m in Sources */,
+				AECE5FD722A4BDAB00980D92 /* SLPlayerAudioFile.m in Sources */,
+				AECE5FD122A4B39F00980D92 /* NSURL+SLExtension.m in Sources */,
 				AE4EFBC722A1114A0065C5B6 /* SLAudioPlayer.m in Sources */,
 				AEB169A3229F71F000DCA673 /* SLMainTableViewController.m in Sources */,
 				AEB169B8229F860800DCA673 /* SLDownloadViewController.m in Sources */,
 				AE4EFBC322A1112C0065C5B6 /* SLAudioPlayerViewController.m in Sources */,
 				AEBAA360229E873C00C4C7B2 /* SLTimerViewController.m in Sources */,
+				AECE5FD422A4B53700980D92 /* SLResourceLoaderDelegate.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

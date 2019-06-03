@@ -35,6 +35,19 @@
     [self timer];
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+
+    [[SLAudioPlayer sharedInstance] stop];
+    [self.timer invalidate];
+    self.timer = nil;
+    NSLog(@"%s", __func__);
+}
+
+- (void)dealloc {
+    NSLog(@"%s", __func__);
+}
+
 - (NSURL *)remoteAudioURL {
     return [NSURL URLWithString:@"http://audio.xmcdn.com/group23/M04/63/C5/wKgJNFg2qdLCziiYAGQxcTOSBEw402.m4a"];
 }
@@ -47,7 +60,7 @@
 - (IBAction)play:(UIButton *)btn {
     
     if ([btn.currentTitle isEqualToString:@"播放"]) {
-        [[SLAudioPlayer sharedInstance] playWithURL:self.locationAudioURL];
+        [[SLAudioPlayer sharedInstance] playWithURL:self.remoteAudioURL isCache:YES];
         btn.selected = YES;
     } else {
         [[SLAudioPlayer sharedInstance] resume];

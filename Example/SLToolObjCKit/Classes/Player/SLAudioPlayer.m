@@ -1,13 +1,14 @@
 //
 //  SLAudioPlayer.m
-//  SLToolObjCKit_Example
+//  SLToolObjCKit
 //
 //  Created by CoderSLZeng on 2019/5/31.
-//  Copyright © 2019 CoderSLZeng. All rights reserved.
 //
 
 #import "SLAudioPlayer.h"
 #import <AVFoundation/AVFoundation.h>
+#import "NSURL+SLExtension.h"
+#import "SLResourceLoaderDelegate.h"
 
 @interface SLAudioPlayer()<NSCopying, NSMutableCopying>
 {
@@ -16,7 +17,8 @@
 
 /** 播放器 */
 @property (strong, nonatomic) AVPlayer *player;
-
+/** 代理 */
+@property (strong, nonatomic) SLResourceLoaderDelegate *delegate;
 @end
 
 @implementation SLAudioPlayer
@@ -30,8 +32,8 @@ static SLAudioPlayer *instance_;
     return instance_;
 }
 
-- (void)playWithURL:(NSURL *)URL {
-    
+- (void)playWithURL:(NSURL *)URL isCache:(BOOL)isCache {
+
     NSURL *currentURL = [(AVURLAsset *)self.player.currentItem.asset URL];
     if ([URL isEqual:currentURL]) {
         NSLog(@"当前播放任务已经存在");
@@ -39,17 +41,34 @@ static SLAudioPlayer *instance_;
         return;
     }
     
+    if (self.player.currentItem) [self removeObserver];
+    
     _URL = URL;
     
-    // 1.资源请求
-    AVAsset *asset = [AVURLAsset assetWithURL:URL];
+    if (isCache) URL = [URL sl_sreamingURL];
     
-    if (self.player.currentItem) [self removeObserver];
+    // 1.资源请求
+    AVURLAsset *asset = [AVURLAsset assetWithURL:URL];
+    
+    // 关于网络音频的请求, 是通过这个对象, 调用代理的相关方法, 进行加载的
+    // 拦截加载的请求, 只需要, 重新修改它的代理方法就可以
+    self.delegate = [[SLResourceLoaderDelegate alloc] init];
+    [asset.resourceLoader setDelegate:self.delegate queue:dispatch_get_main_queue()];
     
     // 2.资源组织
     AVPlayerItem *item = [AVPlayerItem playerItemWithAsset:asset];
     [item addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
     [item addObserver:self forKeyPath:@"playbackLikelyToKeepUp" options:NSKeyValueObservingOptionNew context:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(playEnd)
+                                                 name:AVPlayerItemDidPlayToEndTimeNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(playInterrupt)
+                                                 name:AVPlayerItemPlaybackStalledNotification
+                                               object:nil];
+    
     // 3.资源播放
     self.player = [AVPlayer playerWithPlayerItem:item];
 }
@@ -183,6 +202,7 @@ static SLAudioPlayer *instance_;
 - (void)removeObserver {
     [self.player.currentItem removeObserver:self forKeyPath:@"status"];
     [self.player.currentItem removeObserver:self forKeyPath:@"playbackLikelyToKeepUp"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 /**
@@ -211,7 +231,7 @@ static SLAudioPlayer *instance_;
             NSLog(@"资源准备好了, 这时候播放就没有问题");
             [self.player play];
         } else {
-            NSLog(@"状态未知");
+            NSLog(@"未知-%ld", status);
         }
     } else if ([keyPath isEqualToString:@"playbackLikelyToKeepUp"]) {
         BOOL ptk = [change[NSKeyValueChangeNewKey] boolValue];

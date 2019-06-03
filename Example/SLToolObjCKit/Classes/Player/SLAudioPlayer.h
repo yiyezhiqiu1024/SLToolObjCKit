@@ -1,9 +1,8 @@
 //
 //  SLAudioPlayer.h
-//  SLToolObjCKit_Example
+//  SLToolObjCKit
 //
 //  Created by CoderSLZeng on 2019/5/31.
-//  Copyright © 2019 CoderSLZeng. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -39,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param URL 资源
  */
-- (void)playWithURL:(NSURL *)URL;
+- (void)playWithURL:(NSURL *)URL isCache:(BOOL)isCache;
 
 /**
  暂停播放
