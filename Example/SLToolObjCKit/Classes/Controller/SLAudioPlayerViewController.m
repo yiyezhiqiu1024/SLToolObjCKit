@@ -49,6 +49,8 @@
 }
 
 - (NSURL *)remoteAudioURL {
+    // http://audio.xmcdn.com/group23/M04/63/C5/wKgJNFg2qdLCziiYAGQxcTOSBEw402.m4a
+    // http://120.25.226.186:32812/resources/videos/minion_01.mp4
     return [NSURL URLWithString:@"http://audio.xmcdn.com/group23/M04/63/C5/wKgJNFg2qdLCziiYAGQxcTOSBEw402.m4a"];
 }
 
@@ -100,7 +102,7 @@
 
 #pragma mark - Action
 - (void)update {
-     NSLog(@"%zd", [SLAudioPlayer sharedInstance].state);
+//     NSLog(@"%zd", [SLAudioPlayer sharedInstance].state);
     // 68
     // 01:08
     // 设计数据模型的

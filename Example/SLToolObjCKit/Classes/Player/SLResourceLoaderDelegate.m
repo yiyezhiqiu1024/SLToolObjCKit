@@ -14,7 +14,7 @@
 /** 下载器 */
 @property (strong, nonatomic) SLAudioDownloader *downloader;
 
-/** 正在加载请求数据 */
+/** 正在加载请求数据的容器 */
 @property (strong, nonatomic) NSMutableArray *loadingRequests;
 
 @end
@@ -90,23 +90,29 @@ didCancelLoadingRequest:(nonnull AVAssetResourceLoadingRequest *)loadingRequest 
         loadingRequest.contentInformationRequest.byteRangeAccessSupported = YES;
         
         // 2.填充数据
+        // 2.1.先从临时文件中取数据
         NSData *data = [NSData dataWithContentsOfFile:[SLPlayerAudioFile tempFilePath:URL]
                                               options:NSDataReadingMappedIfSafe
                                                 error:nil];
+        // 2.2.如果临时文件没有，表示下载完成，到缓存文件中取数据
         if (data == nil) {
             data = [NSData dataWithContentsOfFile:[SLPlayerAudioFile cacheFilePath:URL]
                                           options:NSDataReadingMappedIfSafe
                                             error:nil];
         }
         
+        // 2.3.获取加载的请求时间点
         long long requestOffest = loadingRequest.dataRequest.requestedOffset;
+        // 2.4.当前正在加载的请求时间点
         long long currentOffset = loadingRequest.dataRequest.currentOffset;
         if (requestOffest != currentOffset) {
             requestOffest = currentOffset;
         }
         
+        // 2.5.请求的加载时间长度
         NSInteger requestedLength = loadingRequest.dataRequest.requestedLength;
         
+        // 2.6.计算加载时间的区间
         long long reponseOffset = requestOffest - self.downloader.offset;
         long long reponseLength = MIN(self.downloader.offset + self.downloader.loadedSize - requestOffest, requestedLength);
         NSData *subData = [data subdataWithRange:NSMakeRange((NSUInteger)reponseOffset, (NSUInteger)reponseLength)];

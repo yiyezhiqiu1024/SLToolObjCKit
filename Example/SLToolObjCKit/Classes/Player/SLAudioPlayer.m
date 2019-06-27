@@ -35,31 +35,31 @@ static SLAudioPlayer *instance_;
 - (void)playWithURL:(NSURL *)URL isCache:(BOOL)isCache {
 
     NSURL *currentURL = [(AVURLAsset *)self.player.currentItem.asset URL];
-    if ([URL isEqual:currentURL]) {
+    if ([URL isEqual:currentURL] || [[URL sl_sreamingURL] isEqual:currentURL]) {
         NSLog(@"当前播放任务已经存在");
         [self resume];
         return;
     }
-    
+
     if (self.player.currentItem) [self removeObserver];
-    
+
     _URL = URL;
-    
+
     if (isCache) URL = [URL sl_sreamingURL];
-    
+
     // 1.资源请求
     AVURLAsset *asset = [AVURLAsset assetWithURL:URL];
-    
+
     // 关于网络音频的请求, 是通过这个对象, 调用代理的相关方法, 进行加载的
     // 拦截加载的请求, 只需要, 重新修改它的代理方法就可以
     self.delegate = [[SLResourceLoaderDelegate alloc] init];
     [asset.resourceLoader setDelegate:self.delegate queue:dispatch_get_main_queue()];
-    
+
     // 2.资源组织
     AVPlayerItem *item = [AVPlayerItem playerItemWithAsset:asset];
     [item addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
     [item addObserver:self forKeyPath:@"playbackLikelyToKeepUp" options:NSKeyValueObservingOptionNew context:nil];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(playEnd)
                                                  name:AVPlayerItemDidPlayToEndTimeNotification
@@ -68,7 +68,7 @@ static SLAudioPlayer *instance_;
                                              selector:@selector(playInterrupt)
                                                  name:AVPlayerItemPlaybackStalledNotification
                                                object:nil];
-    
+
     // 3.资源播放
     self.player = [AVPlayer playerWithPlayerItem:item];
 }
@@ -229,9 +229,9 @@ static SLAudioPlayer *instance_;
         AVPlayerItemStatus status = [change[NSKeyValueChangeNewKey] integerValue];
         if (status == AVPlayerItemStatusReadyToPlay) {
             NSLog(@"资源准备好了, 这时候播放就没有问题");
-            [self.player play];
+            [self resume];
         } else {
-            NSLog(@"未知-%ld", status);
+            NSLog(@"未知-%ld", (long)status);
         }
     } else if ([keyPath isEqualToString:@"playbackLikelyToKeepUp"]) {
         BOOL ptk = [change[NSKeyValueChangeNewKey] boolValue];
