@@ -28,6 +28,7 @@
 		AE4EFBC922A11BAC0065C5B6 /* localtionAudio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AE4EFBC822A11BAC0065C5B6 /* localtionAudio.mp3 */; };
 		AE88CC0022A7BBB30000F861 /* SLAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AE4EFBC622A1114A0065C5B6 /* SLAudioPlayer.m */; };
 		AE9C0FBD22C47471003B7714 /* SLUUIDToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AE9C0FBC22C47471003B7714 /* SLUUIDToolTests.m */; };
+		AE9C134D22C4A322003B7714 /* SLDeviceToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AE9C134C22C4A322003B7714 /* SLDeviceToolTests.m */; };
 		AEB169A3229F71F000DCA673 /* SLMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB169A2229F71F000DCA673 /* SLMainTableViewController.m */; };
 		AEB169B8229F860800DCA673 /* SLDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB169B7229F860800DCA673 /* SLDownloadViewController.m */; };
 		AEB9C4AA221E79B200EFFA76 /* debug.cer in Resources */ = {isa = PBXBuildFile; fileRef = AEB9C4A8221E79B200EFFA76 /* debug.cer */; };
@@ -84,6 +85,7 @@
 		AE4EFBC622A1114A0065C5B6 /* SLAudioPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLAudioPlayer.m; sourceTree = "<group>"; };
 		AE4EFBC822A11BAC0065C5B6 /* localtionAudio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = localtionAudio.mp3; sourceTree = "<group>"; };
 		AE9C0FBC22C47471003B7714 /* SLUUIDToolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLUUIDToolTests.m; sourceTree = "<group>"; };
+		AE9C134C22C4A322003B7714 /* SLDeviceToolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLDeviceToolTests.m; sourceTree = "<group>"; };
 		AEB169A1229F71F000DCA673 /* SLMainTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLMainTableViewController.h; sourceTree = "<group>"; };
 		AEB169A2229F71F000DCA673 /* SLMainTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLMainTableViewController.m; sourceTree = "<group>"; };
 		AEB169B6229F860800DCA673 /* SLDownloadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLDownloadViewController.h; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 			children = (
 				6003F5BB195388D20070C39A /* Tests.m */,
 				AE9C0FBC22C47471003B7714 /* SLUUIDToolTests.m */,
+				AE9C134C22C4A322003B7714 /* SLDeviceToolTests.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
 			path = Tests;
@@ -490,6 +493,7 @@
 			files = (
 				AE88CC0022A7BBB30000F861 /* SLAudioPlayer.m in Sources */,
 				6003F5BC195388D20070C39A /* Tests.m in Sources */,
+				AE9C134D22C4A322003B7714 /* SLDeviceToolTests.m in Sources */,
 				AE9C0FBD22C47471003B7714 /* SLUUIDToolTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

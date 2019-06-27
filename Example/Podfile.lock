@@ -17,6 +17,7 @@ PODS:
   - SLCategoryObjCKit/String (0.4.1)
   - SLToolObjCKit (1.0.2):
     - SLToolObjCKit/Alert (= 1.0.2)
+    - SLToolObjCKit/Device (= 1.0.2)
     - SLToolObjCKit/Download (= 1.0.2)
     - SLToolObjCKit/File (= 1.0.2)
     - SLToolObjCKit/Network (= 1.0.2)
@@ -27,6 +28,7 @@ PODS:
     - SLToolObjCKit/UserDefaults (= 1.0.2)
     - SLToolObjCKit/UUID (= 1.0.2)
   - SLToolObjCKit/Alert (1.0.2)
+  - SLToolObjCKit/Device (1.0.2)
   - SLToolObjCKit/Download (1.0.2):
     - SLCategoryObjCKit/String
     - SLToolObjCKit/File
@@ -60,7 +62,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   SLCategoryObjCKit: 2db0faf7ecb075b78511b69421141f0550686c68
-  SLToolObjCKit: 7410547295e5dfe21494658e9da7ee29e5e6b68f
+  SLToolObjCKit: 94439d82538decceebaf5e48927e2aa06d8b4d88
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
 PODFILE CHECKSUM: d36088fe82ade4eadb79ff89a5097731c4b2bb8f
