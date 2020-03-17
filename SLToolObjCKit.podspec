@@ -30,6 +30,7 @@ Pod::Spec.new do |s|
     10.设备
     11.自定义布局
     12.自定义转场动画
+    13.保存图片
     等工具类
     DESC
     
@@ -133,9 +134,15 @@ Pod::Spec.new do |s|
         end
 
         # 自定义转场动画
-        s.subspec '' do |transition|
+        s.subspec 'Transition' do |transition|
             transition.source_files = 'SLToolObjCKit/Classes/Transition/*.{h,m}'
             transition.dependency 'SLCategoryObjCKit/String'
+        end
+
+        
+        # 自定义转场动画
+        s.subspec 'PhotoAlbumTool' do |photoAlbumTool|
+            photoAlbumTool.source_files = 'SLToolObjCKit/Classes/PhotoAlbumTool/*.{h,m}'
         end
     end
     
