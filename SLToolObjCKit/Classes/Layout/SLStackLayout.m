@@ -1,9 +1,8 @@
 //
 // SLStackLayout.m
-//  <#项目名称#>
+//  SLToolObjCKit
 //
-//  Created by apple on 14/12/4.
-//  Copyright (c) 2014年 SLZeng. All rights reserved.
+//  Created by CoderSLZeng on 2020/3/17.
 //
 
 
