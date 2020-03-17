@@ -133,7 +133,7 @@ Pod::Spec.new do |s|
         end
 
         # 自定义转场动画
-        s.subspec 'Transition' do |transition|
+        s.subspec '' do |transition|
             transition.source_files = 'SLToolObjCKit/Classes/Transition/*.{h,m}'
             transition.dependency 'SLCategoryObjCKit/String'
         end
